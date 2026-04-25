@@ -4,7 +4,7 @@
 //  yoki environment variable orqali server.js dan yuklansin
 // ═══════════════════════════════════════════════════════════
 
-const SUPABASE_URL      = 'https://ecxllkqajkntnikwbpgl.supabase.co';       // https://xxxx.supabase.co
+const SUPABASE_URL   = 'https://ecxllkqajkntnikwbpgl.supabase.co';       // https://xxxx.supabase.co
 const SUPABASE_ANON_KEY = 'sb_publishable_9pEOR9DF5kddUproD5NTjQ_MnFFUmee';  // anon/public key
 
 // Bosh admin — to'liq huquq (qo'shish, o'chirish, parol yangilash)

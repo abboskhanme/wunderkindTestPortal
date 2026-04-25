@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wunderkind — Portal</title>
-  <!-- Faqat kerakli 2 weight: 700 va 800 -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Baloo+2:wght@700;800&display=swap"
     rel="stylesheet">
   <style>
@@ -31,7 +30,7 @@
       --text: #3D2C1E;
       --text2: #7A6055;
       --white: #fff;
-      --sidebar-w: 230px;
+      --sidebar-w: 240px;
       --header-h: 66px;
     }
 
@@ -49,7 +48,6 @@
       flex-direction: column
     }
 
-    /* LOADING BAR */
     .loading-bar {
       display: none;
       position: fixed;
@@ -87,7 +85,7 @@
       justify-content: space-between;
       flex-shrink: 0;
       z-index: 200;
-      position: relative;
+      position: relative
     }
 
     .header-left {
@@ -235,20 +233,24 @@
       width: var(--sidebar-w);
       background: var(--white);
       border-right: 2.5px solid var(--peach2);
-      padding: 18px 10px;
+      padding: 14px 10px;
       flex-shrink: 0;
       overflow-y: auto;
       transition: transform .25s ease
     }
 
-    .sidebar-title {
-      font-size: 10px;
+    .sidebar-section-title {
+      font-size: 9px;
       font-weight: 800;
-      letter-spacing: 1.6px;
+      letter-spacing: 1.8px;
       color: var(--text2);
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin: 12px 0 6px;
       padding-left: 11px
+    }
+
+    .sidebar-section-title:first-child {
+      margin-top: 4px
     }
 
     .grade-btn {
@@ -256,17 +258,17 @@
       display: flex;
       align-items: center;
       gap: 9px;
-      padding: 10px 11px;
+      padding: 9px 11px;
       border-radius: 12px;
       border: 2px solid transparent;
       background: transparent;
       cursor: pointer;
       font-family: 'Nunito', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--text2);
       transition: background .15s, border-color .15s, color .15s;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
       text-align: left
     }
 
@@ -283,15 +285,46 @@
     }
 
     .grade-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
       flex-shrink: 0;
       background: rgba(255, 255, 255, .35)
+    }
+
+    .dir-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text2);
+      transition: background .15s, border-color .15s, color .15s;
+      margin-bottom: 2px;
+      text-align: left
+    }
+
+    .dir-btn:hover {
+      background: var(--sky);
+      border-color: rgba(74, 158, 255, .3);
+      color: var(--text)
+    }
+
+    .dir-btn.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: transparent
     }
 
     /* MAIN */
@@ -326,6 +359,42 @@
       font-size: 13px;
       font-weight: 700;
       margin-top: 4px
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      flex-wrap: wrap
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 50px;
+      border: 2px solid var(--peach2);
+      background: var(--peach);
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text2);
+      cursor: pointer;
+      transition: all .15s
+    }
+
+    .filter-chip:hover {
+      border-color: var(--coral);
+      color: var(--coral)
+    }
+
+    .filter-chip.active {
+      background: var(--coral);
+      color: #fff;
+      border-color: transparent
     }
 
     /* CARDS */
@@ -808,6 +877,82 @@
       cursor: not-allowed
     }
 
+    .add-btn.blue {
+      background: var(--blue)
+    }
+
+    .add-btn.green {
+      background: var(--green)
+    }
+
+    /* TABS */
+    .tab-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--peach2);
+      padding-bottom: 0
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      border: none;
+      background: transparent;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text2);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color .15s, border-color .15s;
+      border-radius: 8px 8px 0 0
+    }
+
+    .tab-btn:hover {
+      color: var(--coral)
+    }
+
+    .tab-btn.active {
+      color: var(--coral);
+      border-bottom-color: var(--coral)
+    }
+
+    .tab-panel {
+      display: none
+    }
+
+    .tab-panel.active {
+      display: block
+    }
+
+    /* ADMIN FILTER BAR */
+    .admin-filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap
+    }
+
+    .admin-filter-select {
+      padding: 8px 14px;
+      border: 2px solid var(--peach2);
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--text);
+      background: var(--peach);
+      outline: none;
+      cursor: pointer;
+      transition: border-color .12s
+    }
+
+    .admin-filter-select:focus {
+      border-color: var(--coral)
+    }
+
     /* TABLE */
     .table-card {
       background: var(--white);
@@ -979,7 +1124,7 @@
       color: #2A9D5C
     }
 
-    /* SUBJECT COLORS */
+    /* SUBJECT & INLINE TAG COLORS */
     .math {
       background: #EBF2FF;
       color: #2563EB
@@ -1025,6 +1170,16 @@
       color: #1D4ED8
     }
 
+    .russian {
+      background: #FFF5F5;
+      color: #C0392B
+    }
+
+    .iqtisod {
+      background: #FFFBEB;
+      color: #92400E
+    }
+
     .default-sub {
       background: #F4EEFF;
       color: #6B3DBE
@@ -1042,8 +1197,98 @@
       display: none
     }
 
-    .config-banner a {
-      color: var(--blue)
+    /* SETTINGS */
+    .settings-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 10px 14px;
+      background: var(--peach);
+      border: 2px solid var(--peach2);
+      border-radius: 12px
+    }
+
+    .settings-row input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      outline: none
+    }
+
+    .settings-row .emoji-input {
+      width: 44px;
+      text-align: center;
+      font-size: 18px;
+      border: none;
+      background: transparent;
+      outline: none
+    }
+
+    .settings-row .del-btn {
+      flex-shrink: 0
+    }
+
+    .settings-item-list {
+      margin-bottom: 14px;
+      max-height: 280px;
+      overflow-y: auto
+    }
+
+    .add-inline-form {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px
+    }
+
+    .add-inline-form input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 2px solid var(--peach2);
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      background: var(--peach);
+      outline: none;
+      color: var(--text)
+    }
+
+    .add-inline-form input:focus {
+      border-color: var(--coral);
+      background: #fff
+    }
+
+    .add-inline-form .emoji-mini {
+      width: 52px;
+      text-align: center;
+      font-size: 18px
+    }
+
+    .save-settings-btn {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 22px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 12px
+    }
+
+    .save-settings-btn:hover {
+      opacity: .88
     }
 
     .spinner {
@@ -1103,7 +1348,6 @@
       border-radius: 99px
     }
 
-    /* RESPONSIVE */
     @media(max-width:900px) {
       .form-row-3 {
         grid-template-columns: 1fr 1fr
@@ -1112,7 +1356,7 @@
 
     @media(max-width:700px) {
       :root {
-        --sidebar-w: 245px;
+        --sidebar-w: 250px;
         --header-h: 60px
       }
 
@@ -1194,7 +1438,6 @@
 </head>
 
 <body>
-
   <div class="loading-bar" id="loadingBar"></div>
 
   <!-- HEADER -->
@@ -1222,8 +1465,10 @@
   <div class="layout">
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <div class="sidebar" id="sidebar">
-      <div class="sidebar-title">📚 Sinfni tanlang</div>
+      <div class="sidebar-section-title">📚 Sinf</div>
       <div id="gradeMenu"></div>
+      <div class="sidebar-section-title" style="margin-top:16px">🎯 Yo'nalish</div>
+      <div id="directionMenu"></div>
     </div>
 
     <div class="main-wrap" id="mainWrap">
@@ -1255,8 +1500,9 @@
           </div>
           <div class="modal-err" id="loginError" style="margin-bottom:14px">❌ Noto'g'ri foydalanuvchi nomi yoki parol!
           </div>
-          <button class="btn-primary" id="loginBtn" style="width:100%;margin-bottom:10px"
-            onclick="checkAdminLogin()">Kirish 🚀</button>
+          <button class="btn-primary" id="loginBtn" style="width:100%;margin-bottom:10px" onclick="checkAdminLogin()">
+            Kirish 🚀
+          </button>
           <button class="btn-secondary" style="width:100%" onclick="goHome()">← Orqaga</button>
         </div>
       </div>
@@ -1271,90 +1517,148 @@
           </div>
         </div>
         <div id="configBanner" class="config-banner">
-          ⚠️ Supabase sozlanmagan! <code>config.js</code> faylida <strong>SUPABASE_URL</strong> va
-          <strong>SUPABASE_ANON_KEY</strong> ni to'ldiring. <a href="DEPLOYMENT.md" target="_blank">Ko'rsatma →</a>
+          ⚠️ Supabase sozlanmagan! <strong>SUPABASE_URL</strong> va <strong>SUPABASE_ANON_KEY</strong> ni .env faylida
+          to'ldiring.
         </div>
-        <div class="form-card">
-          <h2>➕ Yangi Test Qo'shish</h2>
-          <div class="form-row" style="margin-bottom:13px">
-            <div class="fg" style="margin-bottom:0">
-              <label>Test nomi *</label>
-              <input type="text" id="f_name" placeholder="Masalan: Matematika — Chorak test">
+
+        <!-- TABS -->
+        <div class="tab-bar">
+          <button class="tab-btn active" onclick="switchTab('tests')">📋 Testlar</button>
+          <button class="tab-btn" onclick="switchTab('settings')">⚙️ Sozlamalar</button>
+        </div>
+
+        <!-- TESTS TAB -->
+        <div class="tab-panel active" id="tab-tests">
+          <div class="form-card">
+            <h2>➕ Yangi Test Qo'shish</h2>
+            <div class="form-row" style="margin-bottom:13px">
+              <div class="fg" style="margin-bottom:0">
+                <label>Test nomi *</label>
+                <input type="text" id="f_name" placeholder="Masalan: Matematika — Chorak test">
+              </div>
+              <div class="fg" style="margin-bottom:0">
+                <label>Fan *</label>
+                <select id="f_subject"></select>
+              </div>
             </div>
-            <div class="fg" style="margin-bottom:0">
-              <label>Fan *</label>
-              <select id="f_subject">
-                <option value="math">📐 Matematika</option>
-                <option value="uzbek">📝 O'zbek tili</option>
-                <option value="fizika">⚗️ Fizika</option>
-                <option value="english">🌍 Ingliz tili</option>
-                <option value="bio">🌿 Biologiya</option>
-                <option value="history">📜 Tarix</option>
-                <option value="geo">🗺️ Geografiya</option>
-                <option value="chemistry">🧪 Kimyo</option>
-                <option value="it">💻 Informatika</option>
-                <option value="default-sub">📚 Boshqa</option>
-              </select>
+            <div class="form-row" style="margin-bottom:13px">
+              <div class="fg" style="margin-bottom:0">
+                <label>Sinf *</label>
+                <select id="f_grade"></select>
+              </div>
+              <div class="fg" style="margin-bottom:0">
+                <label>Yo'nalish</label>
+                <select id="f_direction">
+                  <option value="">— Yo'nalishsiz —</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row" style="margin-bottom:13px">
+              <div class="fg" style="margin-bottom:0">
+                <label>Test sanasi</label>
+                <input type="date" id="f_date">
+              </div>
+              <div class="fg" style="margin-bottom:0">
+                <label>Test havolasi (URL) *</label>
+                <input type="url" id="f_url" placeholder="https://forms.google.com/...">
+              </div>
+            </div>
+            <div class="fg">
+              <label>Tavsif (ixtiyoriy)</label>
+              <input type="text" id="f_desc" placeholder="Masalan: 1-chorak uchun yozma test">
+            </div>
+            <div style="display:flex;align-items:center;gap:13px;flex-wrap:wrap">
+              <button class="add-btn" id="addTestBtn" onclick="addTest()">➕ Test qo'shish</button>
+              <span style="font-size:12px;font-weight:700;color:var(--text2)">🔑 Parol avtomatik yaratiladi</span>
             </div>
           </div>
-          <div class="form-row" style="margin-bottom:13px">
-            <div class="fg" style="margin-bottom:0">
-              <label>Sinf *</label>
-              <select id="f_grade">
-                <option value="1">1-sinf</option>
-                <option value="2">2-sinf</option>
-                <option value="3">3-sinf</option>
-                <option value="4">4-sinf</option>
-                <option value="5" selected>5-sinf</option>
-                <option value="6">6-sinf</option>
-                <option value="7">7-sinf</option>
-                <option value="8">8-sinf</option>
-                <option value="9">9-sinf</option>
-                <option value="10">10-sinf</option>
-                <option value="11">11-sinf</option>
-              </select>
+
+          <!-- Admin Filter -->
+          <div class="admin-filter-bar">
+            <span style="font-size:13px;font-weight:800;color:var(--text2)">Filtr:</span>
+            <select class="admin-filter-select" id="adminFilterGrade" onchange="renderAdminTable()">
+              <option value="">Barcha sinflar</option>
+            </select>
+            <select class="admin-filter-select" id="adminFilterDirection" onchange="renderAdminTable()">
+              <option value="">Barcha yo'nalishlar</option>
+            </select>
+            <select class="admin-filter-select" id="adminFilterSubject" onchange="renderAdminTable()">
+              <option value="">Barcha fanlar</option>
+            </select>
+          </div>
+
+          <div class="table-card">
+            <div class="table-card-header">
+              <h2>📋 Testlar <span id="adminTableCount"
+                  style="font-size:12px;font-weight:700;color:var(--text2)"></span></h2>
             </div>
-            <div class="fg" style="margin-bottom:0">
-              <label>Test sanasi</label>
-              <input type="date" id="f_date">
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nomi</th>
+                    <th>Fan</th>
+                    <th>Sinf</th>
+                    <th>Yo'nalish</th>
+                    <th>Parol</th>
+                    <th>Sana</th>
+                    <th>Havola</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="adminTable"></tbody>
+              </table>
             </div>
-          </div>
-          <div class="fg">
-            <label>Test havolasi (URL) *</label>
-            <input type="url" id="f_url" placeholder="https://test.example.com/...">
-          </div>
-          <div class="fg">
-            <label>Tavsif (ixtiyoriy)</label>
-            <input type="text" id="f_desc" placeholder="Masalan: 1-chorak uchun yozma test">
-          </div>
-          <div style="display:flex;align-items:center;gap:13px;flex-wrap:wrap">
-            <button class="add-btn" id="addTestBtn" onclick="addTest()">➕ Test qo'shish</button>
-            <span style="font-size:12px;font-weight:700;color:var(--text2)">🔑 Parol avtomatik yaratiladi</span>
           </div>
         </div>
-        <div class="table-card">
-          <div class="table-card-header">
-            <h2>📋 Barcha Testlar</h2>
+
+        <!-- SETTINGS TAB -->
+        <div class="tab-panel" id="tab-settings">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+            <!-- Sinflar -->
+            <div class="form-card">
+              <h2>📚 Sinflar (1-7)</h2>
+              <p style="font-size:12px;color:var(--text2);font-weight:700;margin-bottom:14px">Maktabingizda mavjud
+                sinflarni boshqaring</p>
+              <div class="settings-item-list" id="gradesList"></div>
+              <div class="add-inline-form">
+                <input type="number" id="newGradeInput" placeholder="Yangi sinf (1-7)" min="1" max="7"
+                  style="width:160px">
+                <button class="add-btn" onclick="addGrade()">➕</button>
+              </div>
+              <button class="save-settings-btn" onclick="saveGrades()">💾 Saqlash</button>
+            </div>
+            <!-- Yo'nalishlar -->
+            <div class="form-card">
+              <h2>🎯 Yo'nalishlar</h2>
+              <p style="font-size:12px;color:var(--text2);font-weight:700;margin-bottom:14px">Sinf yo'nalishlarini
+                boshqaring</p>
+              <div class="settings-item-list" id="directionsList"></div>
+              <div class="add-inline-form">
+                <input type="text" class="emoji-mini" id="newDirEmoji" placeholder="🎯" value="📚">
+                <input type="text" id="newDirName" placeholder="Yangi yo'nalish nomi...">
+                <button class="add-btn" onclick="addDirection()">➕</button>
+              </div>
+              <button class="save-settings-btn" onclick="saveDirections()">💾 Saqlash</button>
+            </div>
           </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Nomi</th>
-                  <th>Fan</th>
-                  <th>Sinf</th>
-                  <th>Parol</th>
-                  <th>Sana</th>
-                  <th>Havola</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="adminTable"></tbody>
-            </table>
+          <!-- Fanlar -->
+          <div class="form-card">
+            <h2>📖 Fanlar</h2>
+            <p style="font-size:12px;color:var(--text2);font-weight:700;margin-bottom:14px">Test qo'shish formidagi
+              fanlar ro'yxatini boshqaring</p>
+            <div class="settings-item-list" id="subjectsList"></div>
+            <div class="add-inline-form">
+              <input type="text" class="emoji-mini" id="newSubEmoji" placeholder="📚" value="📚">
+              <input type="text" id="newSubKey" placeholder="kalit (masalan: chem2)" style="width:130px">
+              <input type="text" id="newSubLabel" placeholder="Fan nomi (masalan: Kimyo 2)">
+              <button class="add-btn" onclick="addSubject()">➕</button>
+            </div>
+            <button class="save-settings-btn" onclick="saveSubjects()">💾 Saqlash</button>
           </div>
         </div>
-      </div>
+      </div><!-- /adminDashView -->
 
       <!-- VIEWER DASHBOARD -->
       <div id="viewerDashView" style="display:none">
@@ -1365,9 +1669,20 @@
             <button class="back-btn" onclick="goHome()">← Asosiy sahifaga</button>
           </div>
         </div>
+        <!-- Viewer Filter -->
+        <div class="admin-filter-bar">
+          <span style="font-size:13px;font-weight:800;color:var(--text2)">Filtr:</span>
+          <select class="admin-filter-select" id="viewerFilterGrade" onchange="renderViewerTable()">
+            <option value="">Barcha sinflar</option>
+          </select>
+          <select class="admin-filter-select" id="viewerFilterDirection" onchange="renderViewerTable()">
+            <option value="">Barcha yo'nalishlar</option>
+          </select>
+        </div>
         <div class="table-card">
           <div class="table-card-header">
-            <h2>📋 Barcha Testlar</h2>
+            <h2>📋 Testlar <span id="viewerTableCount" style="font-size:12px;font-weight:700;color:var(--text2)"></span>
+            </h2>
           </div>
           <div class="table-wrap">
             <table>
@@ -1376,6 +1691,7 @@
                   <th>Nomi</th>
                   <th>Fan</th>
                   <th>Sinf</th>
+                  <th>Yo'nalish</th>
                   <th>Parol</th>
                   <th>Sana</th>
                   <th>Havola</th>
@@ -1386,9 +1702,8 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
+    </div><!-- /mainWrap -->
+  </div><!-- /layout -->
 
   <!-- PASSWORD MODAL -->
   <div class="modal-overlay" id="passModal" onclick="handleModalClick(event)">
@@ -1437,38 +1752,12 @@
       <p class="modal-sub">O'zgartirmoqchi bo'lgan maydonlarni tahrirlang</p>
       <div class="fg"><label>Test nomi *</label><input type="text" id="e_name" placeholder="Test nomi..."></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px">
-        <div class="fg" style="margin-bottom:0">
-          <label>Fan *</label>
-          <select id="e_subject">
-            <option value="math">📐 Matematika</option>
-            <option value="uzbek">📝 O'zbek tili</option>
-            <option value="fizika">⚗️ Fizika</option>
-            <option value="english">🌍 Ingliz tili</option>
-            <option value="bio">🌿 Biologiya</option>
-            <option value="history">📜 Tarix</option>
-            <option value="geo">🗺️ Geografiya</option>
-            <option value="chemistry">🧪 Kimyo</option>
-            <option value="it">💻 Informatika</option>
-            <option value="default-sub">📚 Boshqa</option>
-          </select>
-        </div>
-        <div class="fg" style="margin-bottom:0">
-          <label>Sinf *</label>
-          <select id="e_grade">
-            <option value="1">1-sinf</option>
-            <option value="2">2-sinf</option>
-            <option value="3">3-sinf</option>
-            <option value="4">4-sinf</option>
-            <option value="5">5-sinf</option>
-            <option value="6">6-sinf</option>
-            <option value="7">7-sinf</option>
-            <option value="8">8-sinf</option>
-            <option value="9">9-sinf</option>
-            <option value="10">10-sinf</option>
-            <option value="11">11-sinf</option>
-          </select>
-        </div>
+        <div class="fg" style="margin-bottom:0"><label>Fan *</label><select id="e_subject"></select></div>
+        <div class="fg" style="margin-bottom:0"><label>Sinf *</label><select id="e_grade"></select></div>
       </div>
+      <div class="fg"><label>Yo'nalish</label><select id="e_direction">
+          <option value="">— Yo'nalishsiz —</option>
+        </select></div>
       <div class="fg"><label>Test havolasi (URL) *</label><input type="url" id="e_url" placeholder="https://..."></div>
       <div class="fg"><label>Tavsif (ixtiyoriy)</label><input type="text" id="e_desc" placeholder="Qisqacha tavsif...">
       </div>
@@ -1485,91 +1774,367 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    let SUPABASE_URL = 'YOUR_SUPABASE_URL', SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-    let SUPER_ADMIN_USERNAME = 'admin', SUPER_ADMIN_PASSWORD = 'Admin@2024!';
-    let VIEWER_ADMIN_USERNAME = 'viewer', VIEWER_ADMIN_PASSWORD = 'Viewer@2024!';
+    // ═══ STATE ═══════════════════════════════════════════════
+    let SUPABASE_URL = '', SUPABASE_ANON_KEY = '';
+    let currentGrade = 1, currentDirection = '', pendingTest = null;
+    let currentView = 'portal', currentRole = null;
+    let tests = [], admins = [];
+    let grades = [1, 2, 3, 4, 5, 6, 7];
+    let directions = [{ name: 'Aniq fanlar', emoji: '🔢' }, { name: 'Filologiya', emoji: '📖' }, { name: 'Iqtisod', emoji: '💰' }, { name: 'Tabiiy fanlar', emoji: '🌿' }];
+    let subjects = [
+      { key: 'math', label: 'Matematika', emoji: '📐', color_class: 'math' },
+      { key: 'uzbek', label: "O'zbek tili", emoji: '📝', color_class: 'uzbek' },
+      { key: 'english', label: 'Ingliz tili', emoji: '🌍', color_class: 'english' },
+      { key: 'russian', label: 'Rus tili', emoji: '🇷🇺', color_class: 'russian' },
+      { key: 'fizika', label: 'Fizika', emoji: '⚗️', color_class: 'fizika' },
+      { key: 'bio', label: 'Biologiya', emoji: '🌿', color_class: 'bio' },
+      { key: 'chemistry', label: 'Kimyo', emoji: '🧪', color_class: 'chemistry' },
+      { key: 'history', label: 'Tarix', emoji: '📜', color_class: 'history' },
+      { key: 'geo', label: 'Geografiya', emoji: '🗺️', color_class: 'geo' },
+      { key: 'it', label: 'Informatika', emoji: '💻', color_class: 'it' },
+      { key: 'iqtisod', label: 'Iqtisodiyot', emoji: '💰', color_class: 'iqtisod' },
+      { key: 'default-sub', label: 'Boshqa', emoji: '📚', color_class: 'default-sub' },
+    ];
 
+    const GE = ['🍀', '🌟', '📖', '🎨', '🧪', '⚡', '🎯'];
+
+    // ═══ SUPABASE ════════════════════════════════════════════
     async function loadConfig() {
-      try { const r = await fetch('/api/config'); if (r.ok) { const c = await r.json(); SUPABASE_URL = c.supabaseUrl; SUPABASE_ANON_KEY = c.supabaseAnonKey; SUPER_ADMIN_USERNAME = c.superAdminUsername; SUPER_ADMIN_PASSWORD = c.superAdminPassword; VIEWER_ADMIN_USERNAME = c.viewerAdminUsername; VIEWER_ADMIN_PASSWORD = c.viewerAdminPassword; return; } } catch (_) { }
-      try { await new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'config.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); } catch (_) { }
+      try {
+        const r = await fetch('/api/config');
+        if (r.ok) {
+          const c = await r.json();
+          SUPABASE_URL = c.supabaseUrl || '';
+          SUPABASE_ANON_KEY = c.supabaseAnonKey || '';
+        }
+      } catch (_) { }
     }
-  </script>
-  <script>
-    const SL = { math: '📐 Matematika', uzbek: "📝 O'zbek tili", fizika: '⚗️ Fizika', english: '🌍 Ingliz tili', bio: '🌿 Biologiya', history: '📜 Tarix', geo: '🗺️ Geografiya', chemistry: '🧪 Kimyo', it: '💻 Informatika', 'default-sub': '📚 Boshqa' };
-    const SE = { math: '📐', uzbek: '✏️', fizika: '🚀', english: '🌍', bio: '🌿', history: '📜', geo: '🗺️', chemistry: '🧪', it: '💻', 'default-sub': '📚' };
-    const GE = ['🍀', '🌟', '📖', '🎨', '🧪', '⚡', '🎯', '🏆', '🔬', '🚀', '🎓'];
 
-    let currentGrade = 1, pendingTest = null, currentView = 'portal', currentRole = null, tests = [];
-
-    const isConfigured = () => SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY';
+    const isConfigured = () => SUPABASE_URL && SUPABASE_ANON_KEY && SUPABASE_URL !== 'YOUR_SUPABASE_URL';
 
     async function sbFetch(path, opts = {}) {
-      const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { ...opts, headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation', ...(opts.headers || {}) } });
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+        ...opts,
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=representation',
+          ...(opts.headers || {})
+        }
+      });
       if (!r.ok) { const e = await r.text(); throw new Error(`${r.status}: ${e}`); }
       return r.status === 204 ? [] : r.json();
     }
 
-    async function loadTestsFromDB() {
-      if (!isConfigured()) { const raw = localStorage.getItem('maktab_tests_v4'); tests = raw ? JSON.parse(raw) : getSeedTests(); return; }
-      showLoader(true);
-      try { const d = await sbFetch('tests?select=*&order=id.asc'); tests = d.map(r => ({ id: r.id, name: r.name, subject: r.subject, grade: r.grade, pass: r.pass, url: r.url, desc: r.description, date: r.date })); }
-      catch (e) { showToast('❌ ' + e.message); const raw = localStorage.getItem('maktab_tests_v4'); if (raw) tests = JSON.parse(raw); }
-      finally { showLoader(false); }
+    // ═══ ADMIN AUTH (from Supabase) ══════════════════════════
+    async function loadAdmins() {
+      if (!isConfigured()) return;
+      try {
+        const rows = await sbFetch('admins?select=username,password,role');
+        admins = rows;
+      } catch (e) { console.warn('Admin yuklashda xato:', e.message); }
     }
-    async function dbInsert(t) {
-      if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return t; }
-      const [row] = await sbFetch('tests', { method: 'POST', body: JSON.stringify({ name: t.name, subject: t.subject, grade: t.grade, pass: t.pass, url: t.url, description: t.desc || '', date: t.date }) });
-      return { ...t, id: row.id };
-    }
-    async function dbUpdatePass(id, p) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await sbFetch(`tests?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ pass: p }) }); }
-    async function dbDelete(id) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await sbFetch(`tests?id=eq.${id}`, { method: 'DELETE' }); }
-    async function dbBulkUpdatePasses(updates) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await Promise.all(updates.map(u => sbFetch(`tests?id=eq.${u.id}`, { method: 'PATCH', body: JSON.stringify({ pass: u.pass }) }))); }
-    async function dbUpdate(id, fields) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await sbFetch(`tests?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(fields) }); }
-
-    function getSeedTests() {
-      return [
-        { name: "Matematika — Chorak test", subject: "math", grade: 5, desc: "1-chorak yozma test", date: "17.02.2024", url: "https://forms.google.com" },
-        { name: "O'zbek tili — Imlo", subject: "uzbek", grade: 5, desc: "Imlo qoidalari", date: "17.07.2024", url: "https://forms.google.com" },
-        { name: "Fizika — Mexanika", subject: "fizika", grade: 9, desc: "Mexanika asoslari", date: "10.01.2024", url: "https://forms.google.com" },
-        { name: "Ingliz tili — Grammar", subject: "english", grade: 7, desc: "Grammatika qoidalari", date: "05.03.2024", url: "https://forms.google.com" },
-      ].map((t, i) => ({ ...t, id: i + 1, pass: genPass() }));
-    }
-    function genPass() { const u = new Set(tests.map(t => t.pass)); let p, n = 0; do { p = String(Math.floor(1e5 + Math.random() * 9e5)); n++; } while (u.has(p) && n < 1e4); return p; }
-    function fmtPass(p) { return p.slice(0, 3) + ' ' + p.slice(3); }
-    function showLoader(on) { document.getElementById('loadingBar').classList.toggle('show', on); }
-
-    function showView(v) {
-      ['portal', 'adminLogin', 'adminDash', 'viewerDash'].forEach(x => document.getElementById(x + 'View').style.display = x === v ? 'block' : 'none');
-      currentView = v; document.getElementById('mainWrap').scrollTop = 0;
-    }
-    function goHome() { showView('portal'); renderCards(); closeSidebar(); if (currentRole) document.getElementById('goToPanelBtn').style.display = 'inline-flex'; }
-    function goToAdminPanel() { document.getElementById('goToPanelBtn').style.display = 'none'; if (currentRole === 'superadmin') { showView('adminDash'); renderAdminTable(); } else if (currentRole === 'viewer') { showView('viewerDash'); renderViewerTable(); } }
 
     function checkAdminLogin() {
-      const u = document.getElementById('loginUsername').value.trim(), p = document.getElementById('loginPassword').value;
+      const u = document.getElementById('loginUsername').value.trim();
+      const p = document.getElementById('loginPassword').value;
       const err = document.getElementById('loginError');
-      if (u === SUPER_ADMIN_USERNAME && p === SUPER_ADMIN_PASSWORD) currentRole = 'superadmin';
-      else if (u === VIEWER_ADMIN_USERNAME && p === VIEWER_ADMIN_PASSWORD) currentRole = 'viewer';
-      else { err.classList.add('show'); document.getElementById('loginPassword').value = ''; setTimeout(() => err.classList.remove('show'), 3000); return; }
-      const pill = document.getElementById('headerRolePill'); pill.style.display = 'inline-flex';
-      if (currentRole === 'superadmin') {
+
+      let role = null;
+      if (admins.length > 0) {
+        const match = admins.find(a => a.username === u && a.password === p);
+        if (match) role = match.role;
+      } else {
+        // Supabase sozlanmagan — xatolik
+        err.textContent = '❌ Supabase ulanmagan! Admin tekshiruvi mumkin emas.';
+        err.classList.add('show');
+        setTimeout(() => err.classList.remove('show'), 4000);
+        return;
+      }
+
+      if (!role) {
+        err.textContent = "❌ Noto'g'ri foydalanuvchi nomi yoki parol!";
+        err.classList.add('show');
+        document.getElementById('loginPassword').value = '';
+        setTimeout(() => err.classList.remove('show'), 3000);
+        return;
+      }
+
+      currentRole = role;
+      const pill = document.getElementById('headerRolePill');
+      pill.style.display = 'inline-flex';
+      document.getElementById('adminEntryBtn').style.display = 'none';
+      document.getElementById('logoutBtn').style.display = 'inline-flex';
+
+      if (role === 'superadmin') {
         pill.innerHTML = '<span class="role-pill superadmin">🛡️ Bosh Admin</span>';
-        document.getElementById('adminEntryBtn').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'inline-flex';
-        showView('adminDash'); if (!isConfigured()) document.getElementById('configBanner').style.display = 'block'; renderAdminTable();
+        if (!isConfigured()) document.getElementById('configBanner').style.display = 'block';
+        showView('adminDash');
+        renderAdminFilters();
+        renderAdminTable();
+        buildSettingsPanels();
       } else {
         pill.innerHTML = '<span class="role-pill viewer">👁️ Viewer</span>';
-        document.getElementById('adminEntryBtn').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'inline-flex';
-        showView('viewerDash'); renderViewerTable();
+        showView('viewerDash');
+        renderViewerFilters();
+        renderViewerTable();
       }
     }
+
     function logout() {
       currentRole = null;
       ['headerRolePill', 'logoutBtn', 'goToPanelBtn'].forEach(id => document.getElementById(id).style.display = 'none');
       document.getElementById('adminEntryBtn').style.display = 'inline-flex';
-      document.getElementById('loginUsername').value = ''; document.getElementById('loginPassword').value = '';
-      document.getElementById('configBanner').style.display = 'none'; goHome();
+      document.getElementById('loginUsername').value = '';
+      document.getElementById('loginPassword').value = '';
+      document.getElementById('configBanner').style.display = 'none';
+      goHome();
+    }
+
+    // ═══ TESTS CRUD ══════════════════════════════════════════
+    async function loadTestsFromDB() {
+      if (!isConfigured()) {
+        const raw = localStorage.getItem('maktab_tests_v5');
+        tests = raw ? JSON.parse(raw) : getSeedTests();
+        return;
+      }
+      showLoader(true);
+      try {
+        const d = await sbFetch('tests?select=*&order=id.asc');
+        tests = d.map(r => ({
+          id: r.id, name: r.name, subject: r.subject, grade: r.grade,
+          direction: r.direction || '', pass: r.pass, url: r.url,
+          desc: r.description, date: r.date
+        }));
+      } catch (e) {
+        showToast('❌ ' + e.message);
+        const raw = localStorage.getItem('maktab_tests_v5');
+        if (raw) tests = JSON.parse(raw);
+      } finally { showLoader(false); }
+    }
+
+    async function dbInsert(t) {
+      if (!isConfigured()) { localStorage.setItem('maktab_tests_v5', JSON.stringify(tests)); return t; }
+      const [row] = await sbFetch('tests', {
+        method: 'POST', body: JSON.stringify({
+          name: t.name, subject: t.subject, grade: t.grade, direction: t.direction || '',
+          pass: t.pass, url: t.url, description: t.desc || '', date: t.date
+        })
+      });
+      return { ...t, id: row.id };
+    }
+    async function dbUpdatePass(id, p) {
+      if (!isConfigured()) { localStorage.setItem('maktab_tests_v5', JSON.stringify(tests)); return; }
+      await sbFetch(`tests?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ pass: p }) });
+    }
+    async function dbDelete(id) {
+      if (!isConfigured()) { localStorage.setItem('maktab_tests_v5', JSON.stringify(tests)); return; }
+      await sbFetch(`tests?id=eq.${id}`, { method: 'DELETE' });
+    }
+    async function dbBulkUpdatePasses(updates) {
+      if (!isConfigured()) { localStorage.setItem('maktab_tests_v5', JSON.stringify(tests)); return; }
+      await Promise.all(updates.map(u => sbFetch(`tests?id=eq.${u.id}`, { method: 'PATCH', body: JSON.stringify({ pass: u.pass }) })));
+    }
+    async function dbUpdate(id, fields) {
+      if (!isConfigured()) { localStorage.setItem('maktab_tests_v5', JSON.stringify(tests)); return; }
+      await sbFetch(`tests?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(fields) });
+    }
+
+    function getSeedTests() {
+      return [
+        { name: "Matematika — Chorak test", subject: "math", grade: 5, direction: 'Aniq fanlar', desc: "1-chorak yozma test", date: "17.02.2024", url: "https://forms.google.com" },
+        { name: "O'zbek tili — Imlo", subject: "uzbek", grade: 5, direction: 'Filologiya', desc: "Imlo qoidalari", date: "17.07.2024", url: "https://forms.google.com" },
+        { name: "Fizika — Mexanika", subject: "fizika", grade: 7, direction: 'Aniq fanlar', desc: "Mexanika asoslari", date: "10.01.2024", url: "https://forms.google.com" },
+      ].map((t, i) => ({ ...t, id: i + 1, pass: String(Math.floor(1e5 + Math.random() * 9e5)) }));
+    }
+
+    // ═══ SETTINGS: Grades, Directions, Subjects ══════════════
+    async function loadSettings() {
+      if (!isConfigured()) return;
+      try {
+        const [dirs, subs] = await Promise.all([
+          sbFetch('directions?select=*&order=sort_order.asc'),
+          sbFetch('subjects?select=*&order=sort_order.asc')
+        ]);
+        if (dirs.length) directions = dirs.map(d => ({ name: d.name, emoji: d.emoji || '📚', id: d.id }));
+        if (subs.length) subjects = subs.map(s => ({ key: s.key, label: s.label, emoji: s.emoji || '📚', color_class: s.color_class || 'default-sub', id: s.id }));
+      } catch (e) { console.warn('Sozlamalar yuklanmadi:', e.message); }
+    }
+
+    async function saveDirections() {
+      if (!isConfigured()) { showToast('⚠️ Supabase sozlanmagan'); return; }
+      showLoader(true);
+      try {
+        await sbFetch('directions?id=gte.0', { method: 'DELETE' });
+        await Promise.all(directions.map((d, i) =>
+          sbFetch('directions', { method: 'POST', body: JSON.stringify({ name: d.name, emoji: d.emoji, sort_order: i }) })
+        ));
+        showToast("✅ Yo'nalishlar saqlandi!");
+        rebuildAllMenus();
+      } catch (e) { showToast('❌ ' + e.message); } finally { showLoader(false); }
+    }
+    async function saveGrades() {
+      // Grades are stored locally (no separate table needed — simple array)
+      localStorage.setItem('maktab_grades', JSON.stringify(grades));
+      showToast('✅ Sinflar saqlandi!');
+      rebuildAllMenus();
+    }
+    async function saveSubjects() {
+      if (!isConfigured()) { showToast('⚠️ Supabase sozlanmagan'); return; }
+      showLoader(true);
+      try {
+        await sbFetch('subjects?id=gte.0', { method: 'DELETE' });
+        await Promise.all(subjects.map((s, i) =>
+          sbFetch('subjects', { method: 'POST', body: JSON.stringify({ key: s.key, label: s.label, emoji: s.emoji, color_class: s.color_class || 'default-sub', sort_order: i }) })
+        ));
+        showToast('✅ Fanlar saqlandi!');
+        populateSubjectSelects();
+      } catch (e) { showToast('❌ ' + e.message); } finally { showLoader(false); }
+    }
+
+    function addGrade() {
+      const v = parseInt(document.getElementById('newGradeInput').value);
+      if (!v || v < 1 || v > 7) { showToast('⚠️ 1-7 oralig\'ida sinf kiriting'); return; }
+      if (grades.includes(v)) { showToast('⚠️ Bu sinf allaqachon mavjud'); return; }
+      grades.push(v); grades.sort((a, b) => a - b);
+      buildGradesListUI();
+      document.getElementById('newGradeInput').value = '';
+    }
+    function addDirection() {
+      const name = document.getElementById('newDirName').value.trim();
+      const emoji = document.getElementById('newDirEmoji').value.trim() || '📚';
+      if (!name) { showToast("⚠️ Yo'nalish nomini kiriting"); return; }
+      if (directions.find(d => d.name === name)) { showToast("⚠️ Bu yo'nalish allaqachon mavjud"); return; }
+      directions.push({ name, emoji });
+      buildDirectionsListUI();
+      document.getElementById('newDirName').value = '';
+    }
+    function addSubject() {
+      const key = document.getElementById('newSubKey').value.trim().toLowerCase().replace(/\s+/g, '-');
+      const label = document.getElementById('newSubLabel').value.trim();
+      const emoji = document.getElementById('newSubEmoji').value.trim() || '📚';
+      if (!key || !label) { showToast('⚠️ Kalit va fan nomini kiriting'); return; }
+      if (subjects.find(s => s.key === key)) { showToast('⚠️ Bu kalit allaqachon mavjud'); return; }
+      subjects.push({ key, label, emoji, color_class: 'default-sub' });
+      buildSubjectsListUI();
+      document.getElementById('newSubKey').value = '';
+      document.getElementById('newSubLabel').value = '';
+    }
+
+    // ═══ UI BUILDERS ══════════════════════════════════════════
+    function getSubjectLabel(key) { const s = subjects.find(x => x.key === key); return s ? s.emoji + ' ' + s.label : '📚 Boshqa'; }
+    function getSubjectEmoji(key) { const s = subjects.find(x => x.key === key); return s ? s.emoji : '📚'; }
+    function getSubjectClass(key) { const s = subjects.find(x => x.key === key); return s ? s.color_class : 'default-sub'; }
+
+    function rebuildAllMenus() {
+      buildGradeMenu();
+      buildDirectionMenu();
+      renderAdminFilters();
+      renderViewerFilters();
+      populateSubjectSelects();
+      populateGradeSelects();
+      populateDirectionSelects();
+    }
+
+    function buildGradeMenu() {
+      const m = document.getElementById('gradeMenu'); m.innerHTML = '';
+      grades.forEach((g, i) => {
+        const b = document.createElement('button');
+        b.className = 'grade-btn' + (g === currentGrade && !currentDirection ? ' active' : '');
+        b.innerHTML = `<span class="grade-icon">${GE[i] || '📚'}</span>${g}-SINF`;
+        b.onclick = () => { currentGrade = g; currentDirection = ''; goHome(); };
+        m.appendChild(b);
+      });
+    }
+    function buildDirectionMenu() {
+      const m = document.getElementById('directionMenu'); m.innerHTML = '';
+      directions.forEach(d => {
+        const b = document.createElement('button');
+        b.className = 'dir-btn' + (d.name === currentDirection ? ' active' : '');
+        b.innerHTML = `<span style="font-size:16px">${d.emoji || '📚'}</span>${d.name}`;
+        b.onclick = () => { currentDirection = d.name; currentGrade = 0; goHome(); };
+        m.appendChild(b);
+      });
+    }
+
+    function populateSubjectSelects() {
+      ['f_subject', 'e_subject'].forEach(id => {
+        const el = document.getElementById(id); if (!el) return;
+        const cur = el.value;
+        el.innerHTML = subjects.map(s => `<option value="${s.key}">${s.emoji} ${s.label}</option>`).join('');
+        if (cur) el.value = cur;
+      });
+    }
+    function populateGradeSelects() {
+      ['f_grade', 'e_grade'].forEach(id => {
+        const el = document.getElementById(id); if (!el) return;
+        const cur = el.value;
+        el.innerHTML = grades.map(g => `<option value="${g}">${g}-sinf</option>`).join('');
+        if (cur) el.value = cur;
+      });
+    }
+    function populateDirectionSelects() {
+      ['f_direction', 'e_direction'].forEach(id => {
+        const el = document.getElementById(id); if (!el) return;
+        const cur = el.value;
+        el.innerHTML = `<option value="">— Yo'nalishsiz —</option>` +
+          directions.map(d => `<option value="${d.name}">${d.emoji} ${d.name}</option>`).join('');
+        if (cur) el.value = cur;
+      });
+    }
+
+    function renderAdminFilters() {
+      const gEl = document.getElementById('adminFilterGrade');
+      const dEl = document.getElementById('adminFilterDirection');
+      const sEl = document.getElementById('adminFilterSubject');
+      if (!gEl) return;
+      gEl.innerHTML = `<option value="">Barcha sinflar</option>` + grades.map(g => `<option value="${g}">${g}-sinf</option>`).join('');
+      dEl.innerHTML = `<option value="">Barcha yo'nalishlar</option>` + directions.map(d => `<option value="${d.name}">${d.emoji} ${d.name}</option>`).join('');
+      sEl.innerHTML = `<option value="">Barcha fanlar</option>` + subjects.map(s => `<option value="${s.key}">${s.emoji} ${s.label}</option>`).join('');
+    }
+    function renderViewerFilters() {
+      const gEl = document.getElementById('viewerFilterGrade');
+      const dEl = document.getElementById('viewerFilterDirection');
+      if (!gEl) return;
+      gEl.innerHTML = `<option value="">Barcha sinflar</option>` + grades.map(g => `<option value="${g}">${g}-sinf</option>`).join('');
+      dEl.innerHTML = `<option value="">Barcha yo'nalishlar</option>` + directions.map(d => `<option value="${d.name}">${d.emoji} ${d.name}</option>`).join('');
+    }
+
+    function getFilteredTests() {
+      let list = [...tests];
+      const gf = document.getElementById('adminFilterGrade')?.value;
+      const df = document.getElementById('adminFilterDirection')?.value;
+      const sf = document.getElementById('adminFilterSubject')?.value;
+      if (gf) list = list.filter(t => String(t.grade) === gf);
+      if (df) list = list.filter(t => t.direction === df);
+      if (sf) list = list.filter(t => t.subject === sf);
+      return list;
+    }
+    function getViewerFilteredTests() {
+      let list = [...tests];
+      const gf = document.getElementById('viewerFilterGrade')?.value;
+      const df = document.getElementById('viewerFilterDirection')?.value;
+      if (gf) list = list.filter(t => String(t.grade) === gf);
+      if (df) list = list.filter(t => t.direction === df);
+      return list;
+    }
+
+    // ═══ PORTAL ══════════════════════════════════════════════
+    function showView(v) {
+      ['portal', 'adminLogin', 'adminDash', 'viewerDash'].forEach(x =>
+        document.getElementById(x + 'View').style.display = x === v ? 'block' : 'none'
+      );
+      currentView = v; document.getElementById('mainWrap').scrollTop = 0;
+    }
+    function goHome() {
+      showView('portal'); renderCards(); closeSidebar();
+      if (currentRole) document.getElementById('goToPanelBtn').style.display = 'inline-flex';
+    }
+    function goToAdminPanel() {
+      document.getElementById('goToPanelBtn').style.display = 'none';
+      if (currentRole === 'superadmin') { showView('adminDash'); renderAdminTable(); }
+      else if (currentRole === 'viewer') { showView('viewerDash'); renderViewerTable(); }
     }
     function showAdminLogin() {
       if (currentRole === 'superadmin') { showView('adminDash'); renderAdminTable(); }
@@ -1577,49 +2142,57 @@
       else { showView('adminLogin'); setTimeout(() => document.getElementById('loginUsername').focus(), 200); }
     }
 
-    function buildGradeMenu() {
-      const m = document.getElementById('gradeMenu'); m.innerHTML = '';
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].forEach((g, i) => {
-        const b = document.createElement('button');
-        b.className = 'grade-btn' + (g === currentGrade ? ' active' : '');
-        b.innerHTML = `<span class="grade-icon">${GE[i]}</span>${g}-SINF`;
-        b.onclick = () => { currentGrade = g; goHome(); }; m.appendChild(b);
-      });
-    }
-    function toggleSidebar() { const sb = document.getElementById('sidebar'), ov = document.getElementById('sidebarOverlay'); ov.classList.toggle('show', sb.classList.toggle('open')); }
-    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
-
     function cardHTML(t, showGrade) {
-      const c = t.subject || 'default-sub';
+      const cls = getSubjectClass(t.subject);
+      const lbl = getSubjectLabel(t.subject);
+      const ico = getSubjectEmoji(t.subject);
       return `<div class="test-card" onclick="openTest(${t.id})">
-      <span class="card-emoji-big">${SE[c] || '📚'}</span>
-      <div class="card-badge ${c}">${SL[c] || 'Boshqa'}</div>
+      <span class="card-emoji-big">${ico}</span>
+      <div class="card-badge ${cls}">${lbl}</div>
       <div class="card-title">${t.name}</div>
       <div class="card-sub">${t.desc || ''}</div>
       <div class="card-footer">
-        <div class="card-date">📅 ${t.date || ''}${showGrade ? ' · ' + t.grade + '-sinf' : ''}</div>
+        <div class="card-date">📅 ${t.date || ''}${showGrade ? ' · ' + t.grade + '-sinf' : ''}${t.direction ? ' · ' + t.direction : ''}</div>
         <button class="card-btn">🔐 Testga o'tish</button>
       </div>
     </div>`;
     }
 
     function renderCards(filtered) {
-      const list = filtered !== undefined ? filtered : tests.filter(t => t.grade === currentGrade);
-      document.getElementById('gradeTitle').textContent = currentGrade + '-sinf';
+      let list;
+      if (filtered !== undefined) {
+        list = filtered;
+      } else if (currentDirection) {
+        list = tests.filter(t => t.direction === currentDirection);
+      } else {
+        list = tests.filter(t => t.grade === currentGrade);
+      }
+      const title = currentDirection || (currentGrade + '-sinf');
+      document.getElementById('gradeTitle').textContent = title;
       document.getElementById('testCount').textContent = list.length ? '🎯 ' + list.length + ' ta test mavjud' : "Hali test qo'shilmagan";
-      buildGradeMenu();
-      document.getElementById('cardsContainer').innerHTML = list.length ? list.map(t => cardHTML(t, false)).join('') : `<div class="empty-state"><div class="big">📭</div><p>Bu sinfda hozircha test yo'q 😊</p></div>`;
+      buildGradeMenu(); buildDirectionMenu();
+      document.getElementById('cardsContainer').innerHTML = list.length
+        ? list.map(t => cardHTML(t, false)).join('')
+        : `<div class="empty-state"><div class="big">📭</div><p>Bu bo'limda hozircha test yo'q 😊</p></div>`;
     }
+
     function filterTests() {
       const q = document.getElementById('searchInput').value.toLowerCase().trim();
       if (!q) { renderCards(); return; }
       if (currentView !== 'portal') showView('portal');
-      const res = tests.filter(t => t.name.toLowerCase().includes(q) || (SL[t.subject] || '').toLowerCase().includes(q));
+      const res = tests.filter(t =>
+        t.name.toLowerCase().includes(q) ||
+        getSubjectLabel(t.subject).toLowerCase().includes(q) ||
+        (t.direction || '').toLowerCase().includes(q)
+      );
       document.getElementById('gradeTitle').textContent = 'Qidiruv';
       document.getElementById('testCount').textContent = '🔍 ' + res.length + ' ta topildi';
-      document.getElementById('cardsContainer').innerHTML = res.length ? res.map(t => cardHTML(t, true)).join('') : `<div class="empty-state"><div class="big">🔍</div><p>Hech narsa topilmadi</p></div>`;
+      document.getElementById('cardsContainer').innerHTML = res.length
+        ? res.map(t => cardHTML(t, true)).join('')
+        : `<div class="empty-state"><div class="big">🔍</div><p>Hech narsa topilmadi</p></div>`;
     }
 
+    // ═══ PASSWORD MODAL ═══════════════════════════════════════
     function openTest(id) {
       pendingTest = tests.find(t => t.id === id); if (!pendingTest) return;
       document.querySelectorAll('.pass-box').forEach(b => { b.value = ''; b.classList.remove('filled'); });
@@ -1663,29 +2236,45 @@
       box.addEventListener('focus', () => box.select());
     });
 
+    // ═══ ADMIN TABLE ══════════════════════════════════════════
     function rowGrade(g) { return `<span style="background:var(--peach);color:var(--coral);padding:3px 11px;border-radius:50px;font-size:12px;font-weight:800;border:2px solid var(--peach2)">${g}-sinf</span>`; }
+    function rowDir(d) { if (!d) return '<span style="color:var(--text2);opacity:.5">—</span>'; const obj = directions.find(x => x.name === d); return `<span style="font-size:12px;font-weight:700">${obj ? obj.emoji : ''} ${d}</span>`; }
+    function fmtPass(p) { return p ? p.slice(0, 3) + ' ' + p.slice(3) : p; }
 
     function renderAdminTable() {
-      document.getElementById('adminTable').innerHTML = tests.length ? tests.map(t => `<tr>
+      const list = getFilteredTests();
+      document.getElementById('adminTableCount').textContent = '(' + list.length + ' ta)';
+      document.getElementById('adminTable').innerHTML = list.length ? list.map(t => `<tr>
       <td style="font-weight:800;max-width:180px;min-width:110px">${t.name}</td>
-      <td><span class="badge-s ${t.subject}">${SL[t.subject] || 'Boshqa'}</span></td>
+      <td><span class="badge-s ${getSubjectClass(t.subject)}">${getSubjectLabel(t.subject)}</span></td>
       <td>${rowGrade(t.grade)}</td>
+      <td>${rowDir(t.direction)}</td>
       <td><span class="pass-badge">${fmtPass(t.pass)}</span><button class="regen-btn" onclick="regenPass(${t.id})">🔄</button></td>
       <td style="color:var(--text2);white-space:nowrap;font-weight:700">${t.date || '—'}</td>
       <td><a href="${t.url}" target="_blank" style="color:var(--blue);font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap">🔗 Ochish</a></td>
       <td><button class="edit-btn" onclick="openEditModal(${t.id})">✏️</button></td>
       <td><button class="del-btn" onclick="deleteTest(${t.id})">🗑</button></td>
-    </tr>`).join('') : `<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:38px;font-weight:700">Hali testlar qo'shilmagan 📭</td></tr>`;
+    </tr>`).join('') : `<tr><td colspan="9" style="text-align:center;color:var(--text2);padding:38px;font-weight:700">Hali testlar qo'shilmagan 📭</td></tr>`;
     }
+
     function renderViewerTable() {
-      document.getElementById('viewerTable').innerHTML = tests.length ? tests.map(t => `<tr>
+      const list = getViewerFilteredTests();
+      document.getElementById('viewerTableCount').textContent = '(' + list.length + ' ta)';
+      document.getElementById('viewerTable').innerHTML = list.length ? list.map(t => `<tr>
       <td style="font-weight:800;max-width:180px;min-width:110px">${t.name}</td>
-      <td><span class="badge-s ${t.subject}">${SL[t.subject] || 'Boshqa'}</span></td>
+      <td><span class="badge-s ${getSubjectClass(t.subject)}">${getSubjectLabel(t.subject)}</span></td>
       <td>${rowGrade(t.grade)}</td>
+      <td>${rowDir(t.direction)}</td>
       <td><span class="pass-badge">${fmtPass(t.pass)}</span></td>
       <td style="color:var(--text2);white-space:nowrap;font-weight:700">${t.date || '—'}</td>
       <td><a href="${t.url}" target="_blank" style="color:var(--blue);font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap">🔗 Ochish</a></td>
-    </tr>`).join('') : `<tr><td colspan="6" style="text-align:center;color:var(--text2);padding:38px;font-weight:700">Hali testlar qo'shilmagan 📭</td></tr>`;
+    </tr>`).join('') : `<tr><td colspan="7" style="text-align:center;color:var(--text2);padding:38px;font-weight:700">Hali testlar qo'shilmagan 📭</td></tr>`;
+    }
+
+    // ═══ TEST CRUD ════════════════════════════════════════════
+    function genPass() {
+      const u = new Set(tests.map(t => t.pass)); let p, n = 0;
+      do { p = String(Math.floor(1e5 + Math.random() * 9e5)); n++; } while (u.has(p) && n < 1e4); return p;
     }
 
     async function addTest() {
@@ -1694,11 +2283,11 @@
       const g = parseInt(document.getElementById('f_grade').value);
       const dv = document.getElementById('f_date').value;
       const d = dv ? new Date(dv).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : new Date().toLocaleDateString('ru-RU');
-      const draft = { id: null, name: n, subject: document.getElementById('f_subject').value, grade: g, pass: genPass(), url: u, desc: document.getElementById('f_desc').value.trim(), date: d };
+      const draft = { id: null, name: n, subject: document.getElementById('f_subject').value, grade: g, direction: document.getElementById('f_direction').value, pass: genPass(), url: u, desc: document.getElementById('f_desc').value.trim(), date: d };
       const btn = document.getElementById('addTestBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Qo\'shilmoqda...'; showLoader(true);
-      try { const saved = await dbInsert(draft); tests.push(saved);['f_name', 'f_url', 'f_desc'].forEach(id => document.getElementById(id).value = ''); document.getElementById('f_date').valueAsDate = new Date(); showToast('✅ Test qo\'shildi! Parol: ' + fmtPass(draft.pass)); renderAdminTable(); }
+      try { const saved = await dbInsert(draft); tests.push(saved);['f_name', 'f_url', 'f_desc'].forEach(id => document.getElementById(id).value = ''); document.getElementById('f_date').valueAsDate = new Date(); showToast("✅ Test qo'shildi! Parol: " + fmtPass(draft.pass)); renderAdminTable(); }
       catch (e) { showToast('❌ ' + e.message); }
-      finally { btn.disabled = false; btn.innerHTML = '➕ Test qo\'shish'; showLoader(false); }
+      finally { btn.disabled = false; btn.innerHTML = "➕ Test qo'shish"; showLoader(false); }
     }
     async function deleteTest(id) {
       if (!confirm("Bu testni o'chirishni tasdiqlaysizmi?")) return;
@@ -1724,8 +2313,11 @@
     let editingId = null;
     function openEditModal(id) {
       const t = tests.find(x => x.id === id); if (!t) return; editingId = id;
-      document.getElementById('e_name').value = t.name || ''; document.getElementById('e_subject').value = t.subject || 'default-sub';
-      document.getElementById('e_grade').value = t.grade || 5; document.getElementById('e_url').value = t.url || '';
+      document.getElementById('e_name').value = t.name || '';
+      document.getElementById('e_subject').value = t.subject || 'default-sub';
+      document.getElementById('e_grade').value = t.grade || grades[0] || 1;
+      document.getElementById('e_direction').value = t.direction || '';
+      document.getElementById('e_url').value = t.url || '';
       document.getElementById('e_desc').value = t.desc || '';
       if (t.date) { const p = t.date.split('.'); if (p.length === 3) document.getElementById('e_date').value = `${p[2]}-${p[1]}-${p[0]}`; else document.getElementById('e_date').value = ''; }
       else document.getElementById('e_date').valueAsDate = new Date();
@@ -1739,18 +2331,87 @@
       const name = document.getElementById('e_name').value.trim(), url = document.getElementById('e_url').value.trim();
       if (!name || !url) { document.getElementById('editError').classList.add('show'); setTimeout(() => document.getElementById('editError').classList.remove('show'), 3000); return; }
       const dv = document.getElementById('e_date').value;
-      const fields = { name, subject: document.getElementById('e_subject').value, grade: parseInt(document.getElementById('e_grade').value), url, description: document.getElementById('e_desc').value.trim(), date: dv ? new Date(dv).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '' };
+      const fields = { name, subject: document.getElementById('e_subject').value, grade: parseInt(document.getElementById('e_grade').value), direction: document.getElementById('e_direction').value || '', url, description: document.getElementById('e_desc').value.trim(), date: dv ? new Date(dv).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '' };
       const btn = document.getElementById('editSaveBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Saqlanmoqda...'; showLoader(true);
-      try { await dbUpdate(editingId, fields); const t = tests.find(x => x.id === editingId); if (t) { t.name = fields.name; t.subject = fields.subject; t.grade = fields.grade; t.url = fields.url; t.desc = fields.description; t.date = fields.date; } closeEditModal(); renderAdminTable(); showToast('✅ Test yangilandi!'); }
+      try { await dbUpdate(editingId, fields); const t = tests.find(x => x.id === editingId); if (t) { t.name = fields.name; t.subject = fields.subject; t.grade = fields.grade; t.direction = fields.direction; t.url = fields.url; t.desc = fields.description; t.date = fields.date; } closeEditModal(); renderAdminTable(); showToast('✅ Test yangilandi!'); }
       catch (e) { showToast('❌ ' + e.message); } finally { btn.disabled = false; btn.innerHTML = '💾 Saqlash'; showLoader(false); }
     }
 
+    // ═══ SETTINGS PANELS ═════════════════════════════════════
+    function buildSettingsPanels() {
+      buildGradesListUI();
+      buildDirectionsListUI();
+      buildSubjectsListUI();
+    }
+    function buildGradesListUI() {
+      const c = document.getElementById('gradesList'); if (!c) return;
+      c.innerHTML = grades.map((g, i) => `
+      <div class="settings-row">
+        <span style="font-size:16px">${GE[i] || '📚'}</span>
+        <span style="font-weight:800;font-size:14px;flex:1">${g}-sinf</span>
+        <button class="del-btn" onclick="removeGrade(${g})">🗑</button>
+      </div>`).join('');
+    }
+    function buildDirectionsListUI() {
+      const c = document.getElementById('directionsList'); if (!c) return;
+      c.innerHTML = directions.map((d, i) => `
+      <div class="settings-row">
+        <input class="emoji-input" value="${d.emoji || '📚'}" oninput="directions[${i}].emoji=this.value">
+        <input style="flex:1;border:none;background:transparent;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text);outline:none" value="${d.name}" oninput="directions[${i}].name=this.value">
+        <button class="del-btn" onclick="removeDirection(${i})">🗑</button>
+      </div>`).join('');
+    }
+    function buildSubjectsListUI() {
+      const c = document.getElementById('subjectsList'); if (!c) return;
+      c.innerHTML = subjects.map((s, i) => `
+      <div class="settings-row">
+        <input class="emoji-input" value="${s.emoji || '📚'}" oninput="subjects[${i}].emoji=this.value">
+        <span style="font-size:11px;font-weight:800;color:var(--text2);min-width:80px">${s.key}</span>
+        <input style="flex:1;border:none;background:transparent;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:var(--text);outline:none" value="${s.label}" oninput="subjects[${i}].label=this.value">
+        <button class="del-btn" onclick="removeSubject(${i})">🗑</button>
+      </div>`).join('');
+    }
+    function removeGrade(g) { if (grades.length <= 1) { showToast("⚠️ Kamida 1 sinf bo'lishi kerak"); return; } grades = grades.filter(x => x !== g); buildGradesListUI(); }
+    function removeDirection(i) { if (directions.length <= 1) { showToast("⚠️ Kamida 1 yo'nalish bo'lishi kerak"); return; } directions.splice(i, 1); buildDirectionsListUI(); }
+    function removeSubject(i) { if (subjects.length <= 1) { showToast('⚠️ Kamida 1 fan bo\'lishi kerak'); return; } subjects.splice(i, 1); buildSubjectsListUI(); }
+
+    // ═══ TABS ═════════════════════════════════════════════════
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', ['tests', 'settings'][i] === tab));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + tab));
+      if (tab === 'settings') buildSettingsPanels();
+    }
+
+    // ═══ SIDEBAR ══════════════════════════════════════════════
+    function toggleSidebar() { const sb = document.getElementById('sidebar'), ov = document.getElementById('sidebarOverlay'); ov.classList.toggle('show', sb.classList.toggle('open')); }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
+
+    // ═══ MISC ═════════════════════════════════════════════════
+    function showLoader(on) { document.getElementById('loadingBar').classList.toggle('show', on); }
     let _tt;
     function showToast(msg) { const el = document.getElementById('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(_tt); _tt = setTimeout(() => el.classList.remove('show'), 3200); }
 
-    document.getElementById('f_date').valueAsDate = new Date();
-    buildGradeMenu(); showView('portal');
-    loadConfig().then(() => loadTestsFromDB().then(() => renderCards()));
+    // ═══ INIT ═════════════════════════════════════════════════
+    async function init() {
+      // Load saved grades from localStorage if any
+      const savedGrades = localStorage.getItem('maktab_grades');
+      if (savedGrades) grades = JSON.parse(savedGrades);
+
+      await loadConfig();
+      await loadSettings();
+      await loadTestsFromDB();
+      await loadAdmins();
+
+      rebuildAllMenus();
+      document.getElementById('f_date').valueAsDate = new Date();
+      currentGrade = grades[0] || 1;
+      buildGradeMenu();
+      buildDirectionMenu();
+      showView('portal');
+      renderCards();
+    }
+
+    init();
   </script>
 </body>
 
