@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wunderkind — Portal</title>
+  <!-- Faqat kerakli 2 weight: 700 va 800 -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Baloo+2:wght@700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    :root {
+      --peach: #FFE5D0;
+      --peach2: #FFCBA4;
+      --sky: #D4EEFF;
+      --mint: #D6F5E3;
+      --yellow: #FFF3C4;
+      --coral: #FF7B54;
+      --blue: #4A9EFF;
+      --green: #3DBE7A;
+      --warm: #FFF8F2;
+      --text: #3D2C1E;
+      --text2: #7A6055;
+      --white: #fff;
+      --sidebar-w: 230px;
+      --header-h: 66px;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--warm);
+      color: var(--text);
+      display: flex;
+      flex-direction: column
+    }
+
+    /* LOADING BAR */
+    .loading-bar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--coral), var(--blue));
+      z-index: 9999;
+      animation: ldbar 1.2s linear infinite
+    }
+
+    .loading-bar.show {
+      display: block
+    }
+
+    @keyframes ldbar {
+      0% {
+        transform: translateX(-100%)
+      }
+
+      100% {
+        transform: translateX(100%)
+      }
+    }
+
+    /* HEADER */
+    .header {
+      height: var(--header-h);
+      background: var(--white);
+      border-bottom: 2.5px solid var(--peach2);
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 200;
+      position: relative;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 11px
+    }
+
+    .hamburger {
+      display: none;
+      background: var(--peach);
+      border: 2px solid var(--peach2);
+      border-radius: 11px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-size: 17px;
+      color: var(--text2)
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--coral);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      flex-shrink: 0
+    }
+
+    .logo-text {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text)
+    }
+
+    .logo-text span {
+      color: var(--coral)
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 9px
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--peach);
+      border: 2px solid var(--peach2);
+      border-radius: 50px;
+      padding: 7px 14px
+    }
+
+    .search-box:focus-within {
+      border-color: var(--coral)
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      outline: none;
+      width: 155px
+    }
+
+    .search-box input::placeholder {
+      color: var(--text2);
+      opacity: .6
+    }
+
+    .hbtn {
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 9px 18px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity .15s;
+      white-space: nowrap;
+      text-decoration: none
+    }
+
+    .hbtn:hover {
+      opacity: .85
+    }
+
+    .hbtn.outline {
+      background: var(--peach);
+      color: var(--text2);
+      border: 2px solid var(--peach2)
+    }
+
+    .hbtn.outline:hover {
+      border-color: var(--coral);
+      color: var(--coral)
+    }
+
+    .hbtn.green {
+      background: var(--green)
+    }
+
+    /* LAYOUT */
+    .layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      position: relative
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: rgba(61, 44, 30, .3);
+      z-index: 150
+    }
+
+    .sidebar-overlay.show {
+      display: block
+    }
+
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--white);
+      border-right: 2.5px solid var(--peach2);
+      padding: 18px 10px;
+      flex-shrink: 0;
+      overflow-y: auto;
+      transition: transform .25s ease
+    }
+
+    .sidebar-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      color: var(--text2);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      padding-left: 11px
+    }
+
+    .grade-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 11px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text2);
+      transition: background .15s, border-color .15s, color .15s;
+      margin-bottom: 3px;
+      text-align: left
+    }
+
+    .grade-btn:hover {
+      background: var(--peach);
+      border-color: var(--peach2);
+      color: var(--text)
+    }
+
+    .grade-btn.active {
+      background: var(--coral);
+      color: #fff;
+      border-color: transparent
+    }
+
+    .grade-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, .35)
+    }
+
+    /* MAIN */
+    .main-wrap {
+      flex: 1;
+      overflow-y: auto;
+      padding: 26px 30px
+    }
+
+    .page-header {
+      margin-bottom: 22px
+    }
+
+    .page-header h1 {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text)
+    }
+
+    .page-header h1 span {
+      display: inline-block;
+      background: var(--coral);
+      color: #fff;
+      border-radius: 9px;
+      padding: 0 9px;
+      transform: rotate(-1deg)
+    }
+
+    .page-header p {
+      color: var(--text2);
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 4px
+    }
+
+    /* CARDS */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+      gap: 16px
+    }
+
+    .test-card {
+      background: var(--white);
+      border: 2.5px solid var(--peach2);
+      border-radius: 20px;
+      padding: 20px;
+      cursor: pointer;
+      transition: border-color .15s, transform .15s
+    }
+
+    .test-card:hover {
+      border-color: var(--coral);
+      transform: translateY(-3px)
+    }
+
+    .test-card:hover .card-btn {
+      background: var(--coral);
+      color: #fff
+    }
+
+    .card-emoji-big {
+      font-size: 34px;
+      display: block;
+      margin-bottom: 9px
+    }
+
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 11px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 10px
+    }
+
+    .card-title {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.35
+    }
+
+    .card-sub {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text2);
+      margin-bottom: 14px;
+      line-height: 1.5
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px
+    }
+
+    .card-date {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text2);
+      opacity: .7
+    }
+
+    .card-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--peach);
+      color: var(--coral);
+      border: none;
+      border-radius: 50px;
+      padding: 7px 15px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      white-space: nowrap
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 64px 20px;
+      grid-column: 1/-1
+    }
+
+    .empty-state .big {
+      font-size: 64px;
+      margin-bottom: 14px
+    }
+
+    .empty-state p {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text2)
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(61, 44, 30, .45);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+      padding: 16px
+    }
+
+    .modal-overlay.show {
+      display: flex
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 26px;
+      padding: 36px 30px;
+      width: 100%;
+      max-width: 420px;
+      border: 2.5px solid var(--peach2);
+      animation: mIn .2s ease
+    }
+
+    @keyframes mIn {
+      from {
+        transform: scale(.9);
+        opacity: 0
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    .modal-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: var(--peach);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      margin-bottom: 16px
+    }
+
+    .modal h2 {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 5px;
+      color: var(--text)
+    }
+
+    .modal-sub {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text2);
+      margin-bottom: 24px;
+      line-height: 1.55
+    }
+
+    .fg-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--text2);
+      margin-bottom: 10px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: block
+    }
+
+    .pass-input-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 16px
+    }
+
+    .pass-box {
+      width: 48px;
+      height: 60px;
+      border: 2.5px solid var(--peach2);
+      border-radius: 14px;
+      text-align: center;
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      background: var(--peach);
+      outline: none;
+      transition: border-color .12s
+    }
+
+    .pass-box:focus {
+      border-color: var(--coral);
+      background: #fff
+    }
+
+    .pass-box.filled {
+      border-color: var(--coral);
+      color: var(--coral)
+    }
+
+    .pass-dot {
+      font-size: 20px;
+      color: var(--peach2);
+      font-weight: 900;
+      user-select: none;
+      margin: 0 1px
+    }
+
+    .modal-err {
+      color: #c0392b;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      display: none;
+      padding: 9px;
+      background: #FFF0F0;
+      border-radius: 12px;
+      border: 2px solid #ffd0d0;
+      margin-bottom: 10px
+    }
+
+    .modal-err.show {
+      display: block
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px
+    }
+
+    .btn-primary {
+      flex: 1;
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 13px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity .15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px
+    }
+
+    .btn-primary:hover {
+      opacity: .88
+    }
+
+    .btn-primary:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .btn-secondary {
+      flex: 1;
+      background: var(--peach);
+      color: var(--text2);
+      border: 2px solid var(--peach2);
+      border-radius: 50px;
+      padding: 13px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: border-color .12s, color .12s
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--coral);
+      color: var(--coral)
+    }
+
+    .shake {
+      animation: shk .35s ease
+    }
+
+    @keyframes shk {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      25% {
+        transform: translateX(-7px)
+      }
+
+      75% {
+        transform: translateX(7px)
+      }
+    }
+
+    /* ADMIN LOGIN */
+    .admin-login-card {
+      background: var(--white);
+      border: 2.5px solid var(--peach2);
+      border-radius: 26px;
+      padding: 44px 38px;
+      width: 100%;
+      max-width: 410px;
+      margin: 36px auto;
+      text-align: center
+    }
+
+    .admin-login-card h2 {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 6px
+    }
+
+    .admin-login-card p {
+      color: var(--text2);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 28px
+    }
+
+    .fg {
+      margin-bottom: 14px
+    }
+
+    .fg label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text2);
+      margin-bottom: 6px;
+      text-align: left
+    }
+
+    .fg input,
+    .fg select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--peach2);
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      outline: none;
+      transition: border-color .12s;
+      background: var(--peach)
+    }
+
+    .fg input:focus,
+    .fg select:focus {
+      border-color: var(--coral);
+      background: #fff
+    }
+
+    .fg input::placeholder {
+      color: var(--text2);
+      opacity: .6
+    }
+
+    /* ADMIN DASH */
+    .admin-dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px
+    }
+
+    .admin-dash-header h1 {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 22px;
+      font-weight: 800
+    }
+
+    .admin-dash-header h1 span {
+      color: var(--coral)
+    }
+
+    .admin-dash-header-right {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--peach);
+      border: 2px solid var(--peach2);
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      color: var(--text2);
+      transition: border-color .12s, color .12s;
+      white-space: nowrap
+    }
+
+    .back-btn:hover {
+      border-color: var(--coral);
+      color: var(--coral)
+    }
+
+    .form-card {
+      background: var(--white);
+      border: 2.5px solid var(--peach2);
+      border-radius: 20px;
+      padding: 26px;
+      margin-bottom: 22px
+    }
+
+    .form-card h2 {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 18px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px
+    }
+
+    .form-row-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 13px
+    }
+
+    .add-btn {
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity .15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px
+    }
+
+    .add-btn:hover {
+      opacity: .88
+    }
+
+    .add-btn:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    /* TABLE */
+    .table-card {
+      background: var(--white);
+      border: 2.5px solid var(--peach2);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 22px
+    }
+
+    .table-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px 14px;
+      flex-wrap: wrap;
+      gap: 9px;
+      border-bottom: 2px solid var(--peach2)
+    }
+
+    .table-card-header h2 {
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 16px;
+      font-weight: 800
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse
+    }
+
+    th {
+      padding: 10px 14px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--text2);
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      border-bottom: 2px solid var(--peach);
+      text-align: left;
+      background: var(--warm);
+      white-space: nowrap
+    }
+
+    td {
+      padding: 12px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      border-bottom: 1.5px solid var(--peach);
+      vertical-align: middle
+    }
+
+    tr:last-child td {
+      border-bottom: none
+    }
+
+    tr:hover td {
+      background: rgba(255, 229, 208, .25)
+    }
+
+    .badge-s {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap
+    }
+
+    .pass-badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--peach);
+      border: 2px solid var(--peach2);
+      border-radius: 9px;
+      padding: 4px 11px;
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--coral);
+      letter-spacing: 1px;
+      user-select: all
+    }
+
+    .del-btn,
+    .regen-btn,
+    .edit-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px 7px;
+      border-radius: 8px;
+      transition: background .12s
+    }
+
+    .del-btn:hover {
+      background: #FFF0F0
+    }
+
+    .regen-btn:hover {
+      background: var(--peach)
+    }
+
+    .edit-btn:hover {
+      background: var(--yellow)
+    }
+
+    .bulk-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--yellow);
+      color: #8B6800;
+      border: 2px solid #FFE08A;
+      border-radius: 50px;
+      padding: 8px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background .12s;
+      white-space: nowrap
+    }
+
+    .bulk-btn:hover {
+      background: #FFE08A
+    }
+
+    .bulk-btn:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .viewer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--mint);
+      color: #2A9D5C;
+      border: 2px solid #A8E6C0;
+      border-radius: 50px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 800
+    }
+
+    .role-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 13px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 800
+    }
+
+    .role-pill.superadmin {
+      background: var(--sky);
+      color: #1a7ad4
+    }
+
+    .role-pill.viewer {
+      background: var(--mint);
+      color: #2A9D5C
+    }
+
+    /* SUBJECT COLORS */
+    .math {
+      background: #EBF2FF;
+      color: #2563EB
+    }
+
+    .uzbek {
+      background: #EDFAF4;
+      color: #059550
+    }
+
+    .fizika {
+      background: #FFF3EF;
+      color: #D84315
+    }
+
+    .english {
+      background: #F4EEFF;
+      color: #7C3AED
+    }
+
+    .bio {
+      background: #F0FDF4;
+      color: #166534
+    }
+
+    .history {
+      background: #FFF8EC;
+      color: #92400E
+    }
+
+    .geo {
+      background: #F0FDFA;
+      color: #0F766E
+    }
+
+    .chemistry {
+      background: #FFF1F2;
+      color: #9F1239
+    }
+
+    .it {
+      background: #EFF6FF;
+      color: #1D4ED8
+    }
+
+    .default-sub {
+      background: #F4EEFF;
+      color: #6B3DBE
+    }
+
+    .config-banner {
+      background: var(--yellow);
+      border: 2px solid #FFE08A;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #8B6800;
+      display: none
+    }
+
+    .config-banner a {
+      color: var(--blue)
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2.5px solid rgba(255, 255, 255, .4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: middle;
+      margin-right: 5px
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: #fff;
+      padding: 11px 24px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 800;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity .25s;
+      pointer-events: none;
+      white-space: nowrap;
+      max-width: 90vw;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .toast.show {
+      opacity: 1
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--peach2);
+      border-radius: 99px
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .form-row-3 {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:700px) {
+      :root {
+        --sidebar-w: 245px;
+        --header-h: 60px
+      }
+
+      .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 160;
+        transform: translateX(-100%);
+        box-shadow: 3px 0 20px rgba(61, 44, 30, .12)
+      }
+
+      .sidebar.open {
+        transform: translateX(0)
+      }
+
+      .hamburger {
+        display: flex;
+        align-items: center
+      }
+
+      .search-box,
+      .logo-text {
+        display: none
+      }
+
+      .main-wrap {
+        padding: 18px 14px
+      }
+
+      .form-row,
+      .form-row-3 {
+        grid-template-columns: 1fr
+      }
+
+      .modal {
+        padding: 26px 18px
+      }
+
+      .pass-box {
+        width: 44px;
+        height: 56px;
+        font-size: 20px
+      }
+
+      .admin-login-card {
+        padding: 30px 18px;
+        margin: 14px auto
+      }
+
+      .form-card {
+        padding: 18px
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr
+      }
+
+      .admin-dash-header {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    @media(max-width:400px) {
+      .pass-box {
+        width: 38px;
+        height: 50px;
+        font-size: 17px;
+        border-radius: 11px
+      }
+
+      .pass-input-row {
+        gap: 4px
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="loading-bar" id="loadingBar"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleSidebar()">☰</button>
+      <div class="logo" onclick="goHome()">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">Wunder<span>kind</span></div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Test qidirish..." oninput="filterTests()">
+      </div>
+      <span id="headerRolePill" style="display:none"></span>
+      <button class="hbtn green" id="goToPanelBtn" onclick="goToAdminPanel()" style="display:none">🛡️ Panel</button>
+      <button class="hbtn outline" id="logoutBtn" onclick="logout()" style="display:none">🚪 Chiqish</button>
+      <button class="hbtn" id="adminEntryBtn" onclick="showAdminLogin()">⚙️ Admin</button>
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-title">📚 Sinfni tanlang</div>
+      <div id="gradeMenu"></div>
+    </div>
+
+    <div class="main-wrap" id="mainWrap">
+
+      <!-- PORTAL VIEW -->
+      <div id="portalView">
+        <div class="page-header">
+          <h1>🎒 <span id="gradeTitle">—</span> testlari</h1>
+          <p id="testCount"></p>
+        </div>
+        <div class="cards-grid" id="cardsContainer"></div>
+      </div>
+
+      <!-- ADMIN LOGIN VIEW -->
+      <div id="adminLoginView" style="display:none">
+        <div class="admin-login-card">
+          <div style="font-size:52px;margin-bottom:14px">🛡️</div>
+          <h2>Admin Paneli</h2>
+          <p>Foydalanuvchi nomi va parolni kiriting</p>
+          <div class="fg">
+            <label>👤 Foydalanuvchi nomi</label>
+            <input type="text" id="loginUsername" placeholder="Username..." autocomplete="username"
+              onkeydown="if(event.key==='Enter')checkAdminLogin()">
+          </div>
+          <div class="fg">
+            <label>🔑 Parol</label>
+            <input type="password" id="loginPassword" placeholder="Parol..." autocomplete="current-password"
+              onkeydown="if(event.key==='Enter')checkAdminLogin()">
+          </div>
+          <div class="modal-err" id="loginError" style="margin-bottom:14px">❌ Noto'g'ri foydalanuvchi nomi yoki parol!
+          </div>
+          <button class="btn-primary" id="loginBtn" style="width:100%;margin-bottom:10px"
+            onclick="checkAdminLogin()">Kirish 🚀</button>
+          <button class="btn-secondary" style="width:100%" onclick="goHome()">← Orqaga</button>
+        </div>
+      </div>
+
+      <!-- ADMIN DASHBOARD -->
+      <div id="adminDashView" style="display:none">
+        <div class="admin-dash-header">
+          <h1>⚙️ <span>Admin</span> Paneli</h1>
+          <div class="admin-dash-header-right">
+            <button class="bulk-btn" onclick="confirmBulkRefresh()">🔄 Barcha parollarni yangilash</button>
+            <button class="back-btn" onclick="goHome()">← Asosiy sahifaga</button>
+          </div>
+        </div>
+        <div id="configBanner" class="config-banner">
+          ⚠️ Supabase sozlanmagan! <code>config.js</code> faylida <strong>SUPABASE_URL</strong> va
+          <strong>SUPABASE_ANON_KEY</strong> ni to'ldiring. <a href="DEPLOYMENT.md" target="_blank">Ko'rsatma →</a>
+        </div>
+        <div class="form-card">
+          <h2>➕ Yangi Test Qo'shish</h2>
+          <div class="form-row" style="margin-bottom:13px">
+            <div class="fg" style="margin-bottom:0">
+              <label>Test nomi *</label>
+              <input type="text" id="f_name" placeholder="Masalan: Matematika — Chorak test">
+            </div>
+            <div class="fg" style="margin-bottom:0">
+              <label>Fan *</label>
+              <select id="f_subject">
+                <option value="math">📐 Matematika</option>
+                <option value="uzbek">📝 O'zbek tili</option>
+                <option value="fizika">⚗️ Fizika</option>
+                <option value="english">🌍 Ingliz tili</option>
+                <option value="bio">🌿 Biologiya</option>
+                <option value="history">📜 Tarix</option>
+                <option value="geo">🗺️ Geografiya</option>
+                <option value="chemistry">🧪 Kimyo</option>
+                <option value="it">💻 Informatika</option>
+                <option value="default-sub">📚 Boshqa</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row" style="margin-bottom:13px">
+            <div class="fg" style="margin-bottom:0">
+              <label>Sinf *</label>
+              <select id="f_grade">
+                <option value="1">1-sinf</option>
+                <option value="2">2-sinf</option>
+                <option value="3">3-sinf</option>
+                <option value="4">4-sinf</option>
+                <option value="5" selected>5-sinf</option>
+                <option value="6">6-sinf</option>
+                <option value="7">7-sinf</option>
+                <option value="8">8-sinf</option>
+                <option value="9">9-sinf</option>
+                <option value="10">10-sinf</option>
+                <option value="11">11-sinf</option>
+              </select>
+            </div>
+            <div class="fg" style="margin-bottom:0">
+              <label>Test sanasi</label>
+              <input type="date" id="f_date">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Test havolasi (URL) *</label>
+            <input type="url" id="f_url" placeholder="https://test.example.com/...">
+          </div>
+          <div class="fg">
+            <label>Tavsif (ixtiyoriy)</label>
+            <input type="text" id="f_desc" placeholder="Masalan: 1-chorak uchun yozma test">
+          </div>
+          <div style="display:flex;align-items:center;gap:13px;flex-wrap:wrap">
+            <button class="add-btn" id="addTestBtn" onclick="addTest()">➕ Test qo'shish</button>
+            <span style="font-size:12px;font-weight:700;color:var(--text2)">🔑 Parol avtomatik yaratiladi</span>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="table-card-header">
+            <h2>📋 Barcha Testlar</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nomi</th>
+                  <th>Fan</th>
+                  <th>Sinf</th>
+                  <th>Parol</th>
+                  <th>Sana</th>
+                  <th>Havola</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="adminTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEWER DASHBOARD -->
+      <div id="viewerDashView" style="display:none">
+        <div class="admin-dash-header">
+          <h1>👁️ <span>Ko'rish</span> Paneli</h1>
+          <div class="admin-dash-header-right">
+            <span class="viewer-badge">👁️ Faqat ko'rish huquqi</span>
+            <button class="back-btn" onclick="goHome()">← Asosiy sahifaga</button>
+          </div>
+        </div>
+        <div class="table-card">
+          <div class="table-card-header">
+            <h2>📋 Barcha Testlar</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nomi</th>
+                  <th>Fan</th>
+                  <th>Sinf</th>
+                  <th>Parol</th>
+                  <th>Sana</th>
+                  <th>Havola</th>
+                </tr>
+              </thead>
+              <tbody id="viewerTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PASSWORD MODAL -->
+  <div class="modal-overlay" id="passModal" onclick="handleModalClick(event)">
+    <div class="modal">
+      <div class="modal-icon">🔐</div>
+      <h2>Parolni kiriting</h2>
+      <p class="modal-sub">O'qituvchingiz bergan 6 ta raqamni yozing 🔢</p>
+      <span class="fg-label">PAROL</span>
+      <div class="pass-input-row" id="passBoxRow">
+        <input class="pass-box" maxlength="1" data-idx="0" inputmode="numeric">
+        <input class="pass-box" maxlength="1" data-idx="1" inputmode="numeric">
+        <input class="pass-box" maxlength="1" data-idx="2" inputmode="numeric">
+        <span class="pass-dot">·</span>
+        <input class="pass-box" maxlength="1" data-idx="3" inputmode="numeric">
+        <input class="pass-box" maxlength="1" data-idx="4" inputmode="numeric">
+        <input class="pass-box" maxlength="1" data-idx="5" inputmode="numeric">
+      </div>
+      <div class="modal-err" id="passError">❌ Noto'g'ri parol! Qayta urinib ko'ring.</div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeModal()">Bekor qilish</button>
+        <button class="btn-primary" onclick="submitPass()">Kirish 🚀</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BULK CONFIRM MODAL -->
+  <div class="modal-overlay" id="bulkModal">
+    <div class="modal">
+      <div class="modal-icon" style="background:var(--yellow)">🔄</div>
+      <h2>Barcha parollarni yangilash?</h2>
+      <p class="modal-sub">Bu amal barcha testlarning parollarini yangi tasodifiy raqamlar bilan almashtiradi.
+        O'quvchilar eski parollar bilan kira olmaydi.<br><br><strong>Bu amalni bekor qilib bo'lmaydi!</strong></p>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeBulkModal()">Bekor qilish</button>
+        <button class="btn-primary" id="bulkConfirmBtn" onclick="executeBulkRefresh()" style="background:var(--blue)">🔄
+          Ha, yangilash</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="modal-overlay" id="editModal" onclick="handleEditModalClick(event)">
+    <div class="modal" style="max-width:500px;max-height:90vh;overflow-y:auto">
+      <div class="modal-icon" style="background:var(--yellow)">✏️</div>
+      <h2>Testni tahrirlash</h2>
+      <p class="modal-sub">O'zgartirmoqchi bo'lgan maydonlarni tahrirlang</p>
+      <div class="fg"><label>Test nomi *</label><input type="text" id="e_name" placeholder="Test nomi..."></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px">
+        <div class="fg" style="margin-bottom:0">
+          <label>Fan *</label>
+          <select id="e_subject">
+            <option value="math">📐 Matematika</option>
+            <option value="uzbek">📝 O'zbek tili</option>
+            <option value="fizika">⚗️ Fizika</option>
+            <option value="english">🌍 Ingliz tili</option>
+            <option value="bio">🌿 Biologiya</option>
+            <option value="history">📜 Tarix</option>
+            <option value="geo">🗺️ Geografiya</option>
+            <option value="chemistry">🧪 Kimyo</option>
+            <option value="it">💻 Informatika</option>
+            <option value="default-sub">📚 Boshqa</option>
+          </select>
+        </div>
+        <div class="fg" style="margin-bottom:0">
+          <label>Sinf *</label>
+          <select id="e_grade">
+            <option value="1">1-sinf</option>
+            <option value="2">2-sinf</option>
+            <option value="3">3-sinf</option>
+            <option value="4">4-sinf</option>
+            <option value="5">5-sinf</option>
+            <option value="6">6-sinf</option>
+            <option value="7">7-sinf</option>
+            <option value="8">8-sinf</option>
+            <option value="9">9-sinf</option>
+            <option value="10">10-sinf</option>
+            <option value="11">11-sinf</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Test havolasi (URL) *</label><input type="url" id="e_url" placeholder="https://..."></div>
+      <div class="fg"><label>Tavsif (ixtiyoriy)</label><input type="text" id="e_desc" placeholder="Qisqacha tavsif...">
+      </div>
+      <div class="fg"><label>Sana</label><input type="date" id="e_date"></div>
+      <div class="modal-err" id="editError" style="margin-bottom:11px">⚠️ Test nomi va havolasini kiriting!</div>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeEditModal()">Bekor qilish</button>
+        <button class="btn-primary" id="editSaveBtn" onclick="saveEdit()" style="background:var(--blue)">💾
+          Saqlash</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let SUPABASE_URL = 'YOUR_SUPABASE_URL', SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+    let SUPER_ADMIN_USERNAME = 'admin', SUPER_ADMIN_PASSWORD = 'Admin@2024!';
+    let VIEWER_ADMIN_USERNAME = 'viewer', VIEWER_ADMIN_PASSWORD = 'Viewer@2024!';
+
+    async function loadConfig() {
+      try { const r = await fetch('/api/config'); if (r.ok) { const c = await r.json(); SUPABASE_URL = c.supabaseUrl; SUPABASE_ANON_KEY = c.supabaseAnonKey; SUPER_ADMIN_USERNAME = c.superAdminUsername; SUPER_ADMIN_PASSWORD = c.superAdminPassword; VIEWER_ADMIN_USERNAME = c.viewerAdminUsername; VIEWER_ADMIN_PASSWORD = c.viewerAdminPassword; return; } } catch (_) { }
+      try { await new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'config.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); } catch (_) { }
+    }
+  </script>
+  <script>
+    const SL = { math: '📐 Matematika', uzbek: "📝 O'zbek tili", fizika: '⚗️ Fizika', english: '🌍 Ingliz tili', bio: '🌿 Biologiya', history: '📜 Tarix', geo: '🗺️ Geografiya', chemistry: '🧪 Kimyo', it: '💻 Informatika', 'default-sub': '📚 Boshqa' };
+    const SE = { math: '📐', uzbek: '✏️', fizika: '🚀', english: '🌍', bio: '🌿', history: '📜', geo: '🗺️', chemistry: '🧪', it: '💻', 'default-sub': '📚' };
+    const GE = ['🍀', '🌟', '📖', '🎨', '🧪', '⚡', '🎯', '🏆', '🔬', '🚀', '🎓'];
+
+    let currentGrade = 1, pendingTest = null, currentView = 'portal', currentRole = null, tests = [];
+
+    const isConfigured = () => SUPABASE_URL !== 'YOUR_SUPABASE_URL' && SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY';
+
+    async function sbFetch(path, opts = {}) {
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { ...opts, headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': `Bearer ${SUPABASE_ANON_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation', ...(opts.headers || {}) } });
+      if (!r.ok) { const e = await r.text(); throw new Error(`${r.status}: ${e}`); }
+      return r.status === 204 ? [] : r.json();
+    }
+
+    async function loadTestsFromDB() {
+      if (!isConfigured()) { const raw = localStorage.getItem('maktab_tests_v4'); tests = raw ? JSON.parse(raw) : getSeedTests(); return; }
+      showLoader(true);
+      try { const d = await sbFetch('tests?select=*&order=id.asc'); tests = d.map(r => ({ id: r.id, name: r.name, subject: r.subject, grade: r.grade, pass: r.pass, url: r.url, desc: r.description, date: r.date })); }
+      catch (e) { showToast('❌ ' + e.message); const raw = localStorage.getItem('maktab_tests_v4'); if (raw) tests = JSON.parse(raw); }
+      finally { showLoader(false); }
+    }
+    async function dbInsert(t) {
+      if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return t; }
+      const [row] = await sbFetch('tests', { method: 'POST', body: JSON.stringify({ name: t.name, subject: t.subject, grade: t.grade, pass: t.pass, url: t.url, description: t.desc || '', date: t.date }) });
+      return { ...t, id: row.id };
+    }
+    async function dbUpdatePass(id, p) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await sbFetch(`tests?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ pass: p }) }); }
+    async function dbDelete(id) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await sbFetch(`tests?id=eq.${id}`, { method: 'DELETE' }); }
+    async function dbBulkUpdatePasses(updates) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await Promise.all(updates.map(u => sbFetch(`tests?id=eq.${u.id}`, { method: 'PATCH', body: JSON.stringify({ pass: u.pass }) }))); }
+    async function dbUpdate(id, fields) { if (!isConfigured()) { localStorage.setItem('maktab_tests_v4', JSON.stringify(tests)); return; } await sbFetch(`tests?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify(fields) }); }
+
+    function getSeedTests() {
+      return [
+        { name: "Matematika — Chorak test", subject: "math", grade: 5, desc: "1-chorak yozma test", date: "17.02.2024", url: "https://forms.google.com" },
+        { name: "O'zbek tili — Imlo", subject: "uzbek", grade: 5, desc: "Imlo qoidalari", date: "17.07.2024", url: "https://forms.google.com" },
+        { name: "Fizika — Mexanika", subject: "fizika", grade: 9, desc: "Mexanika asoslari", date: "10.01.2024", url: "https://forms.google.com" },
+        { name: "Ingliz tili — Grammar", subject: "english", grade: 7, desc: "Grammatika qoidalari", date: "05.03.2024", url: "https://forms.google.com" },
+      ].map((t, i) => ({ ...t, id: i + 1, pass: genPass() }));
+    }
+    function genPass() { const u = new Set(tests.map(t => t.pass)); let p, n = 0; do { p = String(Math.floor(1e5 + Math.random() * 9e5)); n++; } while (u.has(p) && n < 1e4); return p; }
+    function fmtPass(p) { return p.slice(0, 3) + ' ' + p.slice(3); }
+    function showLoader(on) { document.getElementById('loadingBar').classList.toggle('show', on); }
+
+    function showView(v) {
+      ['portal', 'adminLogin', 'adminDash', 'viewerDash'].forEach(x => document.getElementById(x + 'View').style.display = x === v ? 'block' : 'none');
+      currentView = v; document.getElementById('mainWrap').scrollTop = 0;
+    }
+    function goHome() { showView('portal'); renderCards(); closeSidebar(); if (currentRole) document.getElementById('goToPanelBtn').style.display = 'inline-flex'; }
+    function goToAdminPanel() { document.getElementById('goToPanelBtn').style.display = 'none'; if (currentRole === 'superadmin') { showView('adminDash'); renderAdminTable(); } else if (currentRole === 'viewer') { showView('viewerDash'); renderViewerTable(); } }
+
+    function checkAdminLogin() {
+      const u = document.getElementById('loginUsername').value.trim(), p = document.getElementById('loginPassword').value;
+      const err = document.getElementById('loginError');
+      if (u === SUPER_ADMIN_USERNAME && p === SUPER_ADMIN_PASSWORD) currentRole = 'superadmin';
+      else if (u === VIEWER_ADMIN_USERNAME && p === VIEWER_ADMIN_PASSWORD) currentRole = 'viewer';
+      else { err.classList.add('show'); document.getElementById('loginPassword').value = ''; setTimeout(() => err.classList.remove('show'), 3000); return; }
+      const pill = document.getElementById('headerRolePill'); pill.style.display = 'inline-flex';
+      if (currentRole === 'superadmin') {
+        pill.innerHTML = '<span class="role-pill superadmin">🛡️ Bosh Admin</span>';
+        document.getElementById('adminEntryBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-flex';
+        showView('adminDash'); if (!isConfigured()) document.getElementById('configBanner').style.display = 'block'; renderAdminTable();
+      } else {
+        pill.innerHTML = '<span class="role-pill viewer">👁️ Viewer</span>';
+        document.getElementById('adminEntryBtn').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-flex';
+        showView('viewerDash'); renderViewerTable();
+      }
+    }
+    function logout() {
+      currentRole = null;
+      ['headerRolePill', 'logoutBtn', 'goToPanelBtn'].forEach(id => document.getElementById(id).style.display = 'none');
+      document.getElementById('adminEntryBtn').style.display = 'inline-flex';
+      document.getElementById('loginUsername').value = ''; document.getElementById('loginPassword').value = '';
+      document.getElementById('configBanner').style.display = 'none'; goHome();
+    }
+    function showAdminLogin() {
+      if (currentRole === 'superadmin') { showView('adminDash'); renderAdminTable(); }
+      else if (currentRole === 'viewer') { showView('viewerDash'); renderViewerTable(); }
+      else { showView('adminLogin'); setTimeout(() => document.getElementById('loginUsername').focus(), 200); }
+    }
+
+    function buildGradeMenu() {
+      const m = document.getElementById('gradeMenu'); m.innerHTML = '';
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].forEach((g, i) => {
+        const b = document.createElement('button');
+        b.className = 'grade-btn' + (g === currentGrade ? ' active' : '');
+        b.innerHTML = `<span class="grade-icon">${GE[i]}</span>${g}-SINF`;
+        b.onclick = () => { currentGrade = g; goHome(); }; m.appendChild(b);
+      });
+    }
+    function toggleSidebar() { const sb = document.getElementById('sidebar'), ov = document.getElementById('sidebarOverlay'); ov.classList.toggle('show', sb.classList.toggle('open')); }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('show'); }
+
+    function cardHTML(t, showGrade) {
+      const c = t.subject || 'default-sub';
+      return `<div class="test-card" onclick="openTest(${t.id})">
+      <span class="card-emoji-big">${SE[c] || '📚'}</span>
+      <div class="card-badge ${c}">${SL[c] || 'Boshqa'}</div>
+      <div class="card-title">${t.name}</div>
+      <div class="card-sub">${t.desc || ''}</div>
+      <div class="card-footer">
+        <div class="card-date">📅 ${t.date || ''}${showGrade ? ' · ' + t.grade + '-sinf' : ''}</div>
+        <button class="card-btn">🔐 Testga o'tish</button>
+      </div>
+    </div>`;
+    }
+
+    function renderCards(filtered) {
+      const list = filtered !== undefined ? filtered : tests.filter(t => t.grade === currentGrade);
+      document.getElementById('gradeTitle').textContent = currentGrade + '-sinf';
+      document.getElementById('testCount').textContent = list.length ? '🎯 ' + list.length + ' ta test mavjud' : "Hali test qo'shilmagan";
+      buildGradeMenu();
+      document.getElementById('cardsContainer').innerHTML = list.length ? list.map(t => cardHTML(t, false)).join('') : `<div class="empty-state"><div class="big">📭</div><p>Bu sinfda hozircha test yo'q 😊</p></div>`;
+    }
+    function filterTests() {
+      const q = document.getElementById('searchInput').value.toLowerCase().trim();
+      if (!q) { renderCards(); return; }
+      if (currentView !== 'portal') showView('portal');
+      const res = tests.filter(t => t.name.toLowerCase().includes(q) || (SL[t.subject] || '').toLowerCase().includes(q));
+      document.getElementById('gradeTitle').textContent = 'Qidiruv';
+      document.getElementById('testCount').textContent = '🔍 ' + res.length + ' ta topildi';
+      document.getElementById('cardsContainer').innerHTML = res.length ? res.map(t => cardHTML(t, true)).join('') : `<div class="empty-state"><div class="big">🔍</div><p>Hech narsa topilmadi</p></div>`;
+    }
+
+    function openTest(id) {
+      pendingTest = tests.find(t => t.id === id); if (!pendingTest) return;
+      document.querySelectorAll('.pass-box').forEach(b => { b.value = ''; b.classList.remove('filled'); });
+      document.getElementById('passError').classList.remove('show');
+      document.getElementById('passModal').classList.add('show');
+      setTimeout(() => document.querySelectorAll('.pass-box')[0].focus(), 120);
+    }
+    function closeModal() { document.getElementById('passModal').classList.remove('show'); pendingTest = null; }
+    function handleModalClick(e) { if (e.target === document.getElementById('passModal')) closeModal(); }
+    function submitPass() {
+      const entered = Array.from(document.querySelectorAll('.pass-box')).map(b => b.value).join('');
+      if (entered.length < 6) { shakeBoxes(); return; }
+      if (!pendingTest) return;
+      const fresh = tests.find(t => t.id === pendingTest.id); if (!fresh) return;
+      if (entered === fresh.pass) { closeModal(); window.open(fresh.url, '_blank'); }
+      else {
+        document.getElementById('passError').classList.add('show'); shakeBoxes();
+        setTimeout(() => { document.querySelectorAll('.pass-box').forEach(b => { b.value = ''; b.classList.remove('filled'); }); document.querySelectorAll('.pass-box')[0].focus(); }, 380);
+        setTimeout(() => document.getElementById('passError').classList.remove('show'), 3500);
+      }
+    }
+    function shakeBoxes() { const r = document.getElementById('passBoxRow'); r.classList.remove('shake'); void r.offsetWidth; r.classList.add('shake'); setTimeout(() => r.classList.remove('shake'), 400); }
+
+    document.querySelectorAll('.pass-box').forEach((box, i, all) => {
+      box.addEventListener('input', e => {
+        const v = e.target.value.replace(/\D/g, ''); e.target.value = v;
+        if (v) { e.target.classList.add('filled'); if (i < 5) all[i + 1].focus(); else submitPass(); }
+        else e.target.classList.remove('filled');
+      });
+      box.addEventListener('keydown', e => {
+        if (e.key === 'Backspace' && !box.value && i > 0) { all[i - 1].focus(); all[i - 1].value = ''; all[i - 1].classList.remove('filled'); }
+        if (e.key === 'Enter') submitPass();
+      });
+      box.addEventListener('paste', e => {
+        e.preventDefault();
+        const d = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+        d.split('').forEach((ch, j) => { if (all[j]) { all[j].value = ch; all[j].classList.add('filled'); } });
+        if (all[Math.min(d.length, 5)]) all[Math.min(d.length, 5)].focus();
+        if (d.length === 6) submitPass();
+      });
+      box.addEventListener('focus', () => box.select());
+    });
+
+    function rowGrade(g) { return `<span style="background:var(--peach);color:var(--coral);padding:3px 11px;border-radius:50px;font-size:12px;font-weight:800;border:2px solid var(--peach2)">${g}-sinf</span>`; }
+
+    function renderAdminTable() {
+      document.getElementById('adminTable').innerHTML = tests.length ? tests.map(t => `<tr>
+      <td style="font-weight:800;max-width:180px;min-width:110px">${t.name}</td>
+      <td><span class="badge-s ${t.subject}">${SL[t.subject] || 'Boshqa'}</span></td>
+      <td>${rowGrade(t.grade)}</td>
+      <td><span class="pass-badge">${fmtPass(t.pass)}</span><button class="regen-btn" onclick="regenPass(${t.id})">🔄</button></td>
+      <td style="color:var(--text2);white-space:nowrap;font-weight:700">${t.date || '—'}</td>
+      <td><a href="${t.url}" target="_blank" style="color:var(--blue);font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap">🔗 Ochish</a></td>
+      <td><button class="edit-btn" onclick="openEditModal(${t.id})">✏️</button></td>
+      <td><button class="del-btn" onclick="deleteTest(${t.id})">🗑</button></td>
+    </tr>`).join('') : `<tr><td colspan="8" style="text-align:center;color:var(--text2);padding:38px;font-weight:700">Hali testlar qo'shilmagan 📭</td></tr>`;
+    }
+    function renderViewerTable() {
+      document.getElementById('viewerTable').innerHTML = tests.length ? tests.map(t => `<tr>
+      <td style="font-weight:800;max-width:180px;min-width:110px">${t.name}</td>
+      <td><span class="badge-s ${t.subject}">${SL[t.subject] || 'Boshqa'}</span></td>
+      <td>${rowGrade(t.grade)}</td>
+      <td><span class="pass-badge">${fmtPass(t.pass)}</span></td>
+      <td style="color:var(--text2);white-space:nowrap;font-weight:700">${t.date || '—'}</td>
+      <td><a href="${t.url}" target="_blank" style="color:var(--blue);font-size:13px;font-weight:800;text-decoration:none;white-space:nowrap">🔗 Ochish</a></td>
+    </tr>`).join('') : `<tr><td colspan="6" style="text-align:center;color:var(--text2);padding:38px;font-weight:700">Hali testlar qo'shilmagan 📭</td></tr>`;
+    }
+
+    async function addTest() {
+      const n = document.getElementById('f_name').value.trim(), u = document.getElementById('f_url').value.trim();
+      if (!n || !u) { showToast("⚠️ Test nomi va havolasini kiriting!"); return; }
+      const g = parseInt(document.getElementById('f_grade').value);
+      const dv = document.getElementById('f_date').value;
+      const d = dv ? new Date(dv).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : new Date().toLocaleDateString('ru-RU');
+      const draft = { id: null, name: n, subject: document.getElementById('f_subject').value, grade: g, pass: genPass(), url: u, desc: document.getElementById('f_desc').value.trim(), date: d };
+      const btn = document.getElementById('addTestBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Qo\'shilmoqda...'; showLoader(true);
+      try { const saved = await dbInsert(draft); tests.push(saved);['f_name', 'f_url', 'f_desc'].forEach(id => document.getElementById(id).value = ''); document.getElementById('f_date').valueAsDate = new Date(); showToast('✅ Test qo\'shildi! Parol: ' + fmtPass(draft.pass)); renderAdminTable(); }
+      catch (e) { showToast('❌ ' + e.message); }
+      finally { btn.disabled = false; btn.innerHTML = '➕ Test qo\'shish'; showLoader(false); }
+    }
+    async function deleteTest(id) {
+      if (!confirm("Bu testni o'chirishni tasdiqlaysizmi?")) return;
+      showLoader(true);
+      try { await dbDelete(id); tests = tests.filter(t => t.id !== id); renderAdminTable(); showToast("🗑️ Test o'chirildi"); }
+      catch (e) { showToast('❌ ' + e.message); } finally { showLoader(false); }
+    }
+    async function regenPass(id) {
+      const t = tests.find(x => x.id === id); if (!t) return;
+      const p = genPass(); showLoader(true);
+      try { await dbUpdatePass(id, p); t.pass = p; renderAdminTable(); showToast('🔄 Yangi parol: ' + fmtPass(p)); }
+      catch (e) { showToast('❌ ' + e.message); } finally { showLoader(false); }
+    }
+    function confirmBulkRefresh() { if (!tests.length) { showToast("⚠️ Yangilanadigan testlar yo'q!"); return; } document.getElementById('bulkModal').classList.add('show'); }
+    function closeBulkModal() { document.getElementById('bulkModal').classList.remove('show'); }
+    async function executeBulkRefresh() {
+      const btn = document.getElementById('bulkConfirmBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Yangilanmoqda...'; showLoader(true);
+      const used = new Set(), updates = tests.map(t => { let p; do { p = String(Math.floor(1e5 + Math.random() * 9e5)); } while (used.has(p)); used.add(p); return { id: t.id, pass: p }; });
+      try { await dbBulkUpdatePasses(updates); updates.forEach(u => { const t = tests.find(x => x.id === u.id); if (t) t.pass = u.pass; }); closeBulkModal(); renderAdminTable(); showToast(`✅ ${updates.length} ta test paroli yangilandi!`); }
+      catch (e) { showToast('❌ ' + e.message); } finally { btn.disabled = false; btn.innerHTML = '🔄 Ha, yangilash'; showLoader(false); }
+    }
+
+    let editingId = null;
+    function openEditModal(id) {
+      const t = tests.find(x => x.id === id); if (!t) return; editingId = id;
+      document.getElementById('e_name').value = t.name || ''; document.getElementById('e_subject').value = t.subject || 'default-sub';
+      document.getElementById('e_grade').value = t.grade || 5; document.getElementById('e_url').value = t.url || '';
+      document.getElementById('e_desc').value = t.desc || '';
+      if (t.date) { const p = t.date.split('.'); if (p.length === 3) document.getElementById('e_date').value = `${p[2]}-${p[1]}-${p[0]}`; else document.getElementById('e_date').value = ''; }
+      else document.getElementById('e_date').valueAsDate = new Date();
+      document.getElementById('editError').classList.remove('show');
+      document.getElementById('editModal').classList.add('show');
+      setTimeout(() => document.getElementById('e_name').focus(), 150);
+    }
+    function closeEditModal() { document.getElementById('editModal').classList.remove('show'); editingId = null; }
+    function handleEditModalClick(e) { if (e.target === document.getElementById('editModal')) closeEditModal(); }
+    async function saveEdit() {
+      const name = document.getElementById('e_name').value.trim(), url = document.getElementById('e_url').value.trim();
+      if (!name || !url) { document.getElementById('editError').classList.add('show'); setTimeout(() => document.getElementById('editError').classList.remove('show'), 3000); return; }
+      const dv = document.getElementById('e_date').value;
+      const fields = { name, subject: document.getElementById('e_subject').value, grade: parseInt(document.getElementById('e_grade').value), url, description: document.getElementById('e_desc').value.trim(), date: dv ? new Date(dv).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '' };
+      const btn = document.getElementById('editSaveBtn'); btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Saqlanmoqda...'; showLoader(true);
+      try { await dbUpdate(editingId, fields); const t = tests.find(x => x.id === editingId); if (t) { t.name = fields.name; t.subject = fields.subject; t.grade = fields.grade; t.url = fields.url; t.desc = fields.description; t.date = fields.date; } closeEditModal(); renderAdminTable(); showToast('✅ Test yangilandi!'); }
+      catch (e) { showToast('❌ ' + e.message); } finally { btn.disabled = false; btn.innerHTML = '💾 Saqlash'; showLoader(false); }
+    }
+
+    let _tt;
+    function showToast(msg) { const el = document.getElementById('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(_tt); _tt = setTimeout(() => el.classList.remove('show'), 3200); }
+
+    document.getElementById('f_date').valueAsDate = new Date();
+    buildGradeMenu(); showView('portal');
+    loadConfig().then(() => loadTestsFromDB().then(() => renderCards()));
+  </script>
+</body>
+
+</html>
