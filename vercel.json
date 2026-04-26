@@ -1,17 +1,6 @@
 {
+  "framework": null,
   "rewrites": [
-    {
-      "source": "/portal",
-      "destination": "/portal.html"
-    },
-    {
-      "source": "/health",
-      "destination": "/api/health"
-    },
-    {
-      "source": "/api/config",
-      "destination": "/api/config"
-    }
-  ],
-  "framework": null
+    { "source": "/portal", "destination": "/portal.html" }
+  ]
 }
