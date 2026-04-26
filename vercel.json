@@ -1,7 +1,17 @@
 {
   "rewrites": [
-    { "source": "/portal", "destination": "/portal.html" },
-    { "source": "/health", "destination": "/api/health" },
-    { "source": "/api/config", "destination": "/api/config" }
-  ]
+    {
+      "source": "/portal",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/api/config",
+      "destination": "/api/config"
+    }
+  ],
+  "framework": null
 }
